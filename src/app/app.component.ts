@@ -13,37 +13,47 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
+      title: 'Information de la ville',
+      url: '/info-city',
+      icon: 'information-circle'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Vote',
+      url: '/vote',
+      icon: 'mail-open'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
+      title: 'FAQ',
+      url: '/faq',
+      icon: 'help-circle'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
+      title: 'Contacter votre mairie',
+      url: '/contact-mairie',
+      icon: 'chatbox-ellipses'
     },
     {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
+      title: 'Evenements',
+      url: '/events',
+      icon: 'calendar'
     },
     {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
+      title: 'Contactez nous',
+      url: '/contact-us',
+      icon: 'chatbubble-ellipses'
+    },
+    {
+      title: 'Profile',
+      url: '/profile',
+      icon: 'accessibility'
+    },
+    {
+      title: 'Deconnection',
+      url: '/folder/Deconnection',
+      icon: 'power'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  //public labels = ['Deconnection'];
 
   constructor(
     private platform: Platform,
