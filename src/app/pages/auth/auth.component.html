@@ -9,8 +9,17 @@
     
   
     <div id="container">
-      <strong class="capitalize">peeeeek le grec est fermé ? </strong>
-      <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" style="width: 50%;"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="Password" style="width: 50%;"></ion-input>
+      </ion-item>
+      <ion-button color="primary" 
+                  (click)="onSignIn()">
+                  Log in</ion-button>
     </div>
   </ion-content>
   
