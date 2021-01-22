@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { SQLite} from '@ionic-native/sqlite/ngx';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,8 @@ import { SQLite} from '@ionic-native/sqlite/ngx';
     StatusBar,
     SplashScreen,
     SQLite,
+    AuthService,
+    AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
