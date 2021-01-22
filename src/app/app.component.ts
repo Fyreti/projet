@@ -51,6 +51,11 @@ export class AppComponent implements OnInit {
       title: 'Deconnection',
       url: '/folder/Deconnection',
       icon: 'power'
+    },
+    {
+      title: 'auth',
+      url: '/auth',
+      icon: 'power'
     }
   ];
   //public labels = ['Deconnection'];
