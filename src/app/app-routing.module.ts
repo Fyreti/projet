@@ -5,7 +5,7 @@ import { AuthGuard } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'info-city',
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
