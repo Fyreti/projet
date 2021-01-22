@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -10,7 +11,7 @@ export class AuthComponent implements OnInit {
 
   authStatus: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authStatus = this.authService.isAuth;
@@ -21,6 +22,7 @@ export class AuthComponent implements OnInit {
       () => {
         console.log('Sign in successful!');
         this.authStatus = this.authService.isAuth;
+        this.router.navigate(['/info-city']);
       }
     );
   }

@@ -4,6 +4,11 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import * as firebase from 'firebase';
+import { AuthGuard } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { Console } from 'console';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -48,24 +53,29 @@ export class AppComponent implements OnInit {
       icon: 'accessibility'
     },
     {
-      title: 'Deconnection',
-      url: '/folder/Deconnection',
-      icon: 'power'
-    },
-    {
-      title: 'auth',
+      title: 'Deconnexion',
       url: '/auth',
       icon: 'power'
     }
   ];
-  //public labels = ['Deconnection'];
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private authService: AuthService
   ) {
-    this.initializeApp();
+    var firebaseConfig = {
+      apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
+      authDomain: "soundcity-e36fa.firebaseapp.com",
+      projectId: "soundcity-e36fa",
+      storageBucket: "soundcity-e36fa.appspot.com",
+      messagingSenderId: "800670036452",
+      appId: "1:800670036452:web:d873650e027c35434157f1",
+      measurementId: "G-6Y7DWJ797F"
+    };
+    // Initialize Firebase
+    firebase.default.initializeApp(firebaseConfig);
+    firebase.default.analytics();
   }
 
   initializeApp() {
@@ -75,10 +85,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+  signOut(title){
+    if (title == 'Deconnexion'){
+      console.log(title);
+      this.authService.signOut();
     }
   }
+
 }

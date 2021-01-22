@@ -5,17 +5,12 @@ import { AuthGuard } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'info-city',
     pathMatch: 'full'
   },
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
-  },
-  {
-    path: 'folder/:id',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
     path: 'info-city',
