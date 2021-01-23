@@ -5,7 +5,7 @@ import { promise } from "protractor";
 @Injectable()
 export class AuthService {
 
-    isAuth = false;
+    public isAuth = false;
   
     constructor() {}
 
@@ -35,7 +35,6 @@ export class AuthService {
             (error) => {
               reject(error);
             }
-
           )
         }
       )
@@ -43,6 +42,7 @@ export class AuthService {
 
     signOutUser() {
       firebase.default.auth().signOut();
+      this.isAuth = false;
     }
 
   }

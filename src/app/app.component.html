@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu *ngIf="isAuth" contentId="main-content" type="overlay">
+    <ion-menu *ngIf="authService.isAuth" contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header>SoundCity</ion-list-header>
@@ -24,6 +24,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
+
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
