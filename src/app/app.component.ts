@@ -88,11 +88,8 @@ export class AppComponent implements OnInit {
   signOut(title){
     if (title == 'Deconnexion'){
       console.log(title);
-      this.authService.signOutUser();
+      this.authService.signOut();
     }
-  }
-
-  ngOnInit(){
   }
 
 }
