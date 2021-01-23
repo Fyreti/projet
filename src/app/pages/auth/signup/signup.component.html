@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+   
+    <ion-title>Auth</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+
+  <div id="container">
+    <h2>Créer un compte</h2>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" formControlName="username"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-textarea>
+      </ion-item>
+      <button ion-button type="submit" [disabled]="signUpForm.invalid" block>Ajouter un user</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</ion-content>

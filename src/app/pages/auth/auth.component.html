@@ -1,25 +1,19 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-     
-      <ion-title>Auth</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content [fullscreen]="true">
-    
-  
-    <div id="container">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <h2>Connexion</h2>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label>Username</ion-label>
-        <ion-input type="text" style="width: 50%;"></ion-input>
+        <ion-label>Email</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Password</ion-label>
-        <ion-input type="Password" style="width: 50%;"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
-      <ion-button color="primary" 
-                  (click)="onSignIn()">
-                  Log in</ion-button>
-    </div>
-  </ion-content>
-  
+      <ion-button type="submit" [disabled]="signInForm.invalid" block>Ajouter un user</ion-button>
+    </form>
+  </div>
+</ion-content>
