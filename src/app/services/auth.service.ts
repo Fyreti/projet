@@ -6,13 +6,13 @@ import { promise } from "protractor";
 export class AuthService {
   
     constructor() {}
-/*
+
     createNewUser(email: string, password: string){
-      return new Promise<void>(
+      return new Promise(
         (resolve, reject) => {
           firebase.default.auth().createUserWithEmailAndPassword(email, password).then(
             () => {
-              resolve();
+              resolve(true);
             },
             (error) => {
               reject(error);
@@ -20,7 +20,7 @@ export class AuthService {
           );
         }
       );
-    }*/
+    }
 
     signInUser(email: string, password: string) {
       return new Promise(
