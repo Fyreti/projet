@@ -13,10 +13,17 @@ import { SQLite} from '@ionic-native/sqlite/ngx';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+ 	  AngularFirestoreModule,
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule

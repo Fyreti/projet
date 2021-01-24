@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
+    authDomain: "soundcity-e36fa.firebaseapp.com",
+    databaseURL: "https://soundcity-e36fa-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "soundcity-e36fa",
+    storageBucket: "soundcity-e36fa.appspot.com",
+    messagingSenderId: "800670036452",
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

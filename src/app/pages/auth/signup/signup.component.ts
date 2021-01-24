@@ -15,7 +15,7 @@ export class SignupComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router ) { }
+              private router: Router, ) { }
 
   ngOnInit() {
     this.initForm();
@@ -25,7 +25,9 @@ export class SignupComponent implements OnInit {
     this.signUpForm = this.formBuilder.group( 
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+        password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
+        ville: ['', Validators.required],
+        age: ['', Validators.required]
       }
     )
   }
@@ -33,7 +35,9 @@ export class SignupComponent implements OnInit {
   onSubmit(){
     const email = this.signUpForm.get('email').value;
     const password = this.signUpForm.get('password').value;
-    this.authService.createNewUser(email, password).then(
+    const ville = this.signUpForm.get('ville').value;
+    const age = this.signUpForm.get('age').value;
+    this.authService.createNewUser(email, password, ville, age).then(
       () => {
         this.router.navigate(['/info-city']);
       },
