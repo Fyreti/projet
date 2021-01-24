@@ -9,6 +9,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'signup',
+    loadChildren: () => import('./pages/auth/signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
   },
