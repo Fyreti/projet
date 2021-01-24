@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
-import * as firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
-  authStatus: boolean;
-
-  signInForm: FormGroup;
+  signUpForm: FormGroup;
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -25,7 +22,7 @@ export class AuthComponent implements OnInit {
   }
 
   initForm(){
-    this.signInForm = this.formBuilder.group( 
+    this.signUpForm = this.formBuilder.group( 
       {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
@@ -34,15 +31,13 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('coucou')
-    const email = this.signInForm.get('email').value;
-    const password = this.signInForm.get('password').value;
-    this.authService.signInUser(email, password).then(
+    const email = this.signUpForm.get('email').value;
+    const password = this.signUpForm.get('password').value;
+    this.authService.createNewUser(email, password).then(
       () => {
         this.router.navigate(['/info-city']);
       },
       (error) => {
-        console.log("error sur le onSubmit");
         this.errorMessage = error;
       }
     );

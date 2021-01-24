@@ -15,6 +15,8 @@ import { Console } from 'console';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public isAuth: boolean;
+
   public selectedIndex = 0;
   public appPages = [
     {
@@ -85,14 +87,27 @@ export class AppComponent implements OnInit {
     });
   }
 
-  signOut(title){
-    if (title == 'Deconnexion'){
-      console.log(title);
-      this.authService.signOut();
-    }
+  ngOnInit() {
+    firebase.default.auth().onAuthStateChanged(
+      (user) => {
+        if(user) {
+          console.log("isAuthTrue");
+          this.isAuth = true;
+        } else {
+          console.log("isAuthFalse");
+          this.isAuth = false;
+        }
+      }
+    );
   }
 
-  ngOnInit(){
+  onSignOut(titleSelect : string) {
+    
+    if (titleSelect == 'Deconnexion'){
+      console.log("deconnexion");
+      this.authService.signOutUser();
+    }
     
   }
+
 }

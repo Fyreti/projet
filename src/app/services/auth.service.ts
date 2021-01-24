@@ -1,21 +1,44 @@
-export class AuthService {
+import { Injectable } from "@angular/core";
+import * as firebase from "firebase";
+import { promise } from "protractor";
 
-    isAuth = false;
+@Injectable()
+export class AuthService {
   
-    signIn() {
-      return new Promise(
+    constructor() {}
+/*
+    createNewUser(email: string, password: string){
+      return new Promise<void>(
         (resolve, reject) => {
-          setTimeout(
+          firebase.default.auth().createUserWithEmailAndPassword(email, password).then(
             () => {
-              this.isAuth = true;
-              resolve(true);
-            }, 2000
+              resolve();
+            },
+            (error) => {
+              reject(error);
+            }
           );
         }
       );
+    }*/
+
+    signInUser(email: string, password: string) {
+      return new Promise(
+        (resolve, reject) => {
+          firebase.default.auth().signInWithEmailAndPassword(email, password).then(
+            () => {
+              resolve(true);
+            },
+            (error) => {
+              reject(error);
+            }
+          );
+        }
+      );
+  }
+
+    signOutUser() {
+      firebase.default.auth().signOut();
     }
-  
-    signOut() {
-      this.isAuth = false;
-    }
+
   }
