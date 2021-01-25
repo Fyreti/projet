@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebase: {
+  /*firebase: {
     apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
     authDomain: "soundcity-e36fa.firebaseapp.com",
     databaseURL: "https://soundcity-e36fa-default-rtdb.europe-west1.firebasedatabase.app",
@@ -12,6 +12,15 @@ export const environment = {
     storageBucket: "soundcity-e36fa.appspot.com",
     messagingSenderId: "800670036452",
   }
+  firebase : {
+      apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
+      authDomain: "soundcity-e36fa.firebaseapp.com",
+      projectId: "soundcity-e36fa",
+      storageBucket: "soundcity-e36fa.appspot.com",
+      messagingSenderId: "800670036452",
+      appId: "1:800670036452:web:d873650e027c35434157f1",
+      measurementId: "G-6Y7DWJ797F"
+    }*/
 };
 
 

@@ -9,7 +9,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { Console } from 'console';
 import { DataService } from './services/data.service';
-import { User } from './model/user.model';
+import { UserApp } from './model/user.model';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +18,8 @@ import { User } from './model/user.model';
 })
 export class AppComponent implements OnInit {
   public isAuth: boolean;
-  public userApp: User;
-  public test : string;
+  public getData : any;
+  //public userApp: UserApp;
 
   public selectedIndex = 0;
   public appPages = [
@@ -69,7 +69,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService,
-    private dataService: DataService
+    private dataService: DataService,
+    public userApp:UserApp,
   ) {
     var firebaseConfig = {
       apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
@@ -98,17 +99,15 @@ export class AppComponent implements OnInit {
         if(user) {
           console.log("isAuth:True");
           this.isAuth = true;
-          this.dataService.getOneUser(user.email).then(
-            
-          );
-          
+          this.dataService.getOneUser(user.email, this.userApp).then();
+          console.log(this.userApp.email);
         } else {
           console.log("isAuth:False");
           this.isAuth = false;
         }
       }
     );
-
+      
   }
 
   onSignOut(titleSelect : string) {
@@ -118,6 +117,10 @@ export class AppComponent implements OnInit {
       this.authService.signOutUser();
     }
     
+  }
+
+  getEmail(){
+    return this.userApp.email;
   }
 
 }

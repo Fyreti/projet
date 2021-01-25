@@ -17,14 +17,14 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { DataService } from './services/data.service';
-import { User } from './model/user.model';
+import { UserApp } from './model/user.model';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    
  	  AngularFirestoreModule,
     BrowserModule,
     IonicModule.forRoot(),
@@ -37,7 +37,7 @@ import { User } from './model/user.model';
     AuthService,
     AuthGuard,
     DataService,
-    User,
+    UserApp,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
