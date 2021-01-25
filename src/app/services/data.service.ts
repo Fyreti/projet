@@ -17,6 +17,7 @@ export class DataService {
             firebase.default.firestore().collection('users').doc(email).get().then(function(doc) {
                 if (doc.exists) {
                     console.log("Profil found:", doc.data());
+                    console.log(doc.get('email'));
                     resolve(doc.data);
                 } else {
                     console.log("No profil found to this email");

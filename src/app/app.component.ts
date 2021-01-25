@@ -19,6 +19,7 @@ import { User } from './model/user.model';
 export class AppComponent implements OnInit {
   public isAuth: boolean;
   public userApp: User;
+  public test : string;
 
   public selectedIndex = 0;
   public appPages = [
@@ -98,14 +99,9 @@ export class AppComponent implements OnInit {
           console.log("isAuth:True");
           this.isAuth = true;
           this.dataService.getOneUser(user.email).then(
-            (userApp: User) => {
-              this.userApp = userApp;
-              console.log(userApp.role);
-              console.log(this.userApp.role);
-              console.log(this.userApp.role);
-              console.log(this.userApp.email);
-            }
+            
           );
+          
         } else {
           console.log("isAuth:False");
           this.isAuth = false;
