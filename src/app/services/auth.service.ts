@@ -5,9 +5,7 @@ import { promise } from "protractor";
 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   
     constructor(private router : Router) {}
@@ -51,10 +49,11 @@ export class AuthService {
     }
 
     createUser(email, ville, age){
-      return firebase.default.firestore().collection('users').add({
+      return firebase.default.firestore().collection('users').doc(email).set({
         email: email,
         ville: ville,
-        age: age
+        age: age,
+        role: "notValid"
       });
     }
 

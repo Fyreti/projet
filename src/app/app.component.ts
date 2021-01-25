@@ -8,6 +8,8 @@ import * as firebase from 'firebase';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { Console } from 'console';
+import { DataService } from './services/data.service';
+import { User } from './model/user.model';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,7 @@ import { Console } from 'console';
 })
 export class AppComponent implements OnInit {
   public isAuth: boolean;
+  public userApp: User;
 
   public selectedIndex = 0;
   public appPages = [
@@ -64,7 +67,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private dataService: DataService
   ) {
     var firebaseConfig = {
       apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
@@ -91,14 +95,24 @@ export class AppComponent implements OnInit {
     firebase.default.auth().onAuthStateChanged(
       (user) => {
         if(user) {
-          console.log("isAuthTrue");
+          console.log("isAuth:True");
           this.isAuth = true;
+          this.dataService.getOneUser(user.email).then(
+            (userApp: User) => {
+              this.userApp = userApp;
+              console.log(userApp.role);
+              console.log(this.userApp.role);
+              console.log(this.userApp.role);
+              console.log(this.userApp.email);
+            }
+          );
         } else {
-          console.log("isAuthFalse");
+          console.log("isAuth:False");
           this.isAuth = false;
         }
       }
     );
+
   }
 
   onSignOut(titleSelect : string) {

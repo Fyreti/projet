@@ -16,6 +16,8 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { DataService } from './services/data.service';
+import { User } from './model/user.model';
 
 
 @NgModule({
@@ -34,6 +36,8 @@ import { environment } from '../environments/environment';
     SQLite,
     AuthService,
     AuthGuard,
+    DataService,
+    User,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
