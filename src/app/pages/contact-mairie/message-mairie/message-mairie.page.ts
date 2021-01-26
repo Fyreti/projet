@@ -19,6 +19,7 @@ export class MessageMairiePage implements OnInit {
   errorMessage: string;
   public allUser: Array<string> = [];
   public email: string;
+  public refresh: boolean;
 
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
@@ -68,11 +69,12 @@ export class MessageMairiePage implements OnInit {
   }
 
   messageRefresh(){
-    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(this.email).collection('message')
-    .onSnapshot(function(doc) {
+    while(true){
       this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
         this.allMessage = allMessage;
       });
-    });
+      setTimeout(function(){ 
+        }, 3000);
+    }
   }
 }

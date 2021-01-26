@@ -76,11 +76,10 @@ export class ContactMairiePage implements OnInit {
   }
 
   messageRefresh(){
-    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(this.userApp.email).collection('message')
-    .onSnapshot(function(doc) {
-      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
-        this.allMessage = allMessage;
-      });
+    this.messageService.receiveMairieMessage(this.userApp, this.userApp.email).then((allMessage) => {
+      this.allMessage = allMessage;
     });
+    setTimeout(function(){ 
+    }, 3000);
   }
 }
