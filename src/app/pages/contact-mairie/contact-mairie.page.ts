@@ -84,7 +84,7 @@ export class ContactMairiePage implements OnInit {
 
   messageRefresh(messageService: MessageService, userApp: UserApp){ 
     setInterval( function() {
-      messageService.receiveMairieMessage(userApp, userApp.email).then((allMessage) => {
+      messageService.receiveMessage(userApp).then((allMessage) => {
         this.allMessage = allMessage;
       });
       console.log("coucou")
