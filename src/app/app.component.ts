@@ -119,8 +119,5 @@ export class AppComponent implements OnInit {
     
   }
 
-  getEmail(){
-    return this.userApp.email;
-  }
 
 }

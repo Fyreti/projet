@@ -18,6 +18,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { DataService } from './services/data.service';
 import { UserApp } from './model/user.model';
+import { MessageService } from './services/message.service';
+import { DatePipe } from '@angular/common';
+import { MessageApp } from './model/message.model';
 
 
 @NgModule({
@@ -38,6 +41,9 @@ import { UserApp } from './model/user.model';
     AuthGuard,
     DataService,
     UserApp,
+    MessageService,
+    DatePipe,
+    MessageApp,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

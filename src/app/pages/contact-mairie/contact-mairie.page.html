@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content *ngIf="(userApp.role | uppercase)==='MAIRIE'" [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
@@ -15,7 +15,51 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">pk le grec est fermé ? </strong>
+    <strong class="capitalize"> Page mairie </strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
+
+
+
+<ion-content *ngIf="(userApp.role | uppercase)==='VALID'"[fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item *ngFor="let message of allMessage">
+      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
+    </ion-item>
+  </ion-list>
+  <div id="container">
+    <strong class="capitalize">pk le grec est fermé ?{{userApp.role}} </strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label>Message</ion-label>
+        <ion-input type="text" formControlName="message"></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+    </form>
+  </div>
+</ion-content>
+
+
+
+<ion-content *ngIf="userApp.role==='notValid'"[fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">Your account is not valid </strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <h2>Send Message</h2>
+    
   </div>
 </ion-content>
