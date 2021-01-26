@@ -28,7 +28,6 @@ export class ContactMairiePage implements OnInit {
   }
 
   ngOnInit() {
-    
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       if (this.userApp.role.toUpperCase()!='MAIRIE'){
@@ -47,7 +46,7 @@ export class ContactMairiePage implements OnInit {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
     this.initForm();
-    this.messageRefresh();
+    this.messageRefresh(this.messageService, this.userApp);
       
   }
 
@@ -75,11 +74,20 @@ export class ContactMairiePage implements OnInit {
     this.router.navigate(['/message-mairie', message]);
   }
 
-  messageRefresh(){
+  /*messageRefresh(){ 
     this.messageService.receiveMairieMessage(this.userApp, this.userApp.email).then((allMessage) => {
       this.allMessage = allMessage;
     });
-    setTimeout(function(){ 
+    console.log("coucou")
+    setTimeout( function() {}, 3000);
+  }*/
+
+  messageRefresh(messageService: MessageService, userApp: UserApp){ 
+    setInterval( function() {
+      messageService.receiveMairieMessage(userApp, userApp.email).then((allMessage) => {
+        this.allMessage = allMessage;
+      });
+      console.log("coucou")
     }, 3000);
   }
 }

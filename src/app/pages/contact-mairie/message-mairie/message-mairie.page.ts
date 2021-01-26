@@ -46,7 +46,7 @@ export class MessageMairiePage implements OnInit {
       }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
-    this.messageRefresh();
+    this.messageRefresh(this.messageService, this.userApp);
     this.initForm();
       
   }
@@ -68,13 +68,20 @@ export class MessageMairiePage implements OnInit {
     }); 
   }
 
-  messageRefresh(){
-    while(true){
-      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+  // messageRefresh(){
+  //   this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+  //     this.allMessage = allMessage;
+  //   });
+  //   console.log("coucou")
+  //   setTimeout( function() {}, 3000);
+  // }
+
+  messageRefresh(messageService: MessageService, userApp: UserApp){ 
+    setInterval( function() {
+      messageService.receiveMairieMessage(userApp, userApp.email).then((allMessage) => {
         this.allMessage = allMessage;
       });
-      setTimeout(function(){ 
-        }, 3000);
-    }
+      console.log("coucou")
+    }, 3000);
   }
 }
