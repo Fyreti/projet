@@ -47,6 +47,7 @@ export class ContactMairiePage implements OnInit {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
     this.initForm();
+    this.messageRefresh();
       
   }
 
@@ -72,5 +73,14 @@ export class ContactMairiePage implements OnInit {
   goToMessageMairie(message:string) {
     console.log("redirectionn");
     this.router.navigate(['/message-mairie', message]);
+  }
+
+  messageRefresh(){
+    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(this.userApp.email).collection('message')
+    .onSnapshot(function(doc) {
+      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+        this.allMessage = allMessage;
+      });
+    });
   }
 }

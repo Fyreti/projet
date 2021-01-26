@@ -62,14 +62,17 @@ export class MessageMairiePage implements OnInit {
     console.log('coucou');
     const message = this.sendMessageForm.get('message').value;
     this.messageService.sendMessageMairie(message, this.userApp, this.email);
-    
+    this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+      this.allMessage = allMessage;
+    }); 
   }
 
   messageRefresh(){
-    while(true){
+    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(this.email).collection('message')
+    .onSnapshot(function(doc) {
       this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
         this.allMessage = allMessage;
-      }); 
-    }
+      });
+    });
   }
 }
