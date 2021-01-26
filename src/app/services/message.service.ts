@@ -49,11 +49,6 @@ export class MessageService {
               this.messageApp.setMessage("Mairie", doc.get('message_mairie'));
               this.allMessage.push(this.messageApp);
             }
-
-            this.allMessage.forEach(element => {
-              console.log(this.allMessage.length);
-              
-            });
             
         });
         
