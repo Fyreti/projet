@@ -45,12 +45,12 @@ export class MessageMairiePage implements OnInit {
       }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
+    this.messageRefresh();
     this.initForm();
       
   }
 
   initForm(){
-    
     this.sendMessageForm = this.formBuilder.group( 
       {
         message: ['', [Validators.required]]
@@ -62,9 +62,14 @@ export class MessageMairiePage implements OnInit {
     console.log('coucou');
     const message = this.sendMessageForm.get('message').value;
     this.messageService.sendMessageMairie(message, this.userApp, this.email);
-    this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
-      this.allMessage = allMessage;
-    }); 
     
+  }
+
+  messageRefresh(){
+    while(true){
+      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+        this.allMessage = allMessage;
+      }); 
+    }
   }
 }
