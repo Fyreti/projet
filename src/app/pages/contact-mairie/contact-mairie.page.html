@@ -13,7 +13,9 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  <ion-list>
+    <ion-button *ngFor="let emailUser of allUser" (click)="receiveMairieMsg(userApp,user)">{{emailUser}}</ion-button>
+  </ion-list>
   <div id="container">
     <strong class="capitalize"> Page mairie </strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>

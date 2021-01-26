@@ -17,6 +17,7 @@ export class ContactMairiePage implements OnInit {
   public allMessage: Array<MessageApp> = [];
   sendMessageForm: FormGroup;
   errorMessage: string;
+  public allUser: Array<string> = [];
 
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
@@ -30,9 +31,19 @@ export class ContactMairiePage implements OnInit {
     
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
-      this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
-        this.allMessage = allMessage;
-      }); // Succès !
+      if (this.userApp.role.toUpperCase()!='MAIRIE'){
+        console.log("User fr");
+        this.messageService.receiveMessage(this.userApp);
+        this.messageService.receiveMessage(this.userApp).then((allMessage) => {
+          this.allMessage = allMessage;
+        }); 
+      }
+      else{
+        console.log("Mairie fr");
+        this.messageService.getAllUser(this.userApp).then((allUser) => {
+          this.allUser = allUser;
+        });
+      }
       }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected

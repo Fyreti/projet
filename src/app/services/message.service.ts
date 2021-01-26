@@ -13,6 +13,7 @@ export class MessageService {
     public message: string;
     public date: Date;
     public messageApp : MessageApp;
+    public allUser: Array<string> = [];
     
   constructor(public datepipe: DatePipe) {  }
 
@@ -35,6 +36,58 @@ export class MessageService {
     return new Promise<Array<MessageApp>>(
       (resolve, reject) => {
         firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').get()
+        .then(snapshot => {
+          this.allMessage = [];
+          snapshot.forEach(doc => {
+            // doc.data() is never undefined for query doc snapshots
+            if (doc.get('message_user')){
+              this.messageApp = new MessageApp();
+              this.messageApp.setMessage("User", doc.get('message_user'));
+              this.allMessage.push(this.messageApp);
+            }
+            else{
+              this.messageApp = new MessageApp();
+              this.messageApp.setMessage("Mairie", doc.get('message_mairie'));
+              this.allMessage.push(this.messageApp);
+            }
+            
+        });
+        
+        resolve(this.allMessage);
+      })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+            reject();
+        });
+    
+      }
+    )
+  }
+
+  getAllUser(userApp: UserApp){
+    return new Promise<Array<string>>(
+      (resolve, reject) => {
+        
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').onSnapshot((querySnapshot) => {
+          this.allUser = [];
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id); // For doc name
+            this.allUser.push(doc.id);
+          });
+          resolve(this.allUser);
+        }),
+        (error) => {
+          reject(error);
+        }
+        
+      }
+    )
+  }
+
+  receiveMairieMessage(userApp: UserApp, email: string){
+    return new Promise<Array<MessageApp>>(
+      (resolve, reject) => {
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').get()
         .then(snapshot => {
           this.allMessage = [];
           snapshot.forEach(doc => {
