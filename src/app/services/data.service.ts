@@ -23,6 +23,7 @@ export class DataService {
                     console.log(userApp.age);
                     console.log(userApp.role);
                     console.log(userApp.ville);
+                    
                     resolve(true);
                 } else {
                     console.log("No profil found to this email");

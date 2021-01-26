@@ -15,7 +15,21 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">Hey Profile</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+          <img src="../assets/img/toucan.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h3 class="email">{{ userApp.email }}</h3>
+        <h5 class="age">{{ userApp.age }}</h5>
+        <h6 class="ville">{{ userApp.ville }}</h6>
+      </div>
+      <ion-button (click)="resetPassword()" color="primary">Mot de passe oublié</ion-button>
+      
+    </div>
   </div>
 </ion-content>

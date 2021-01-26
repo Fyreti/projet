@@ -28,7 +28,7 @@ export class ContactMairiePage implements OnInit {
 
   ngOnInit() {
     
-    var user = firebase.default.auth().currentUser;//Get the user who is connected
+    var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
         this.allMessage = allMessage;
