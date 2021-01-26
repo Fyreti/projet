@@ -3,28 +3,11 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Contact Mairie</ion-title>
+    <ion-title>SoundCity Message Mairie</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="(userApp.role | uppercase)==='MAIRIE'" [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-list>
-    <ion-button *ngFor="let emailUser of allUser" (click)="goToMessageMairie(emailUser)">{{emailUser}}</ion-button>
-  </ion-list>
-  <div id="container">
-    <strong class="capitalize"> Page mairie </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
-
-
-
-<ion-content *ngIf="(userApp.role | uppercase)==='VALID'"[fullscreen]="true">
+<ion-content *ngIf="(userApp.role | uppercase)==='MAIRIE'"[fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
@@ -32,8 +15,8 @@
   </ion-header>
   <ion-list>
     <ion-item *ngFor="let message of allMessage">
-      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+      <ion-label  *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
     </ion-item>
   </ion-list>
   <div id="container">

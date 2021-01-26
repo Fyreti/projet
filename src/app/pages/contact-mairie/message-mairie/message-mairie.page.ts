@@ -3,46 +3,45 @@ import { UserApp } from 'src/app/model/user.model';
 import { DataService } from 'src/app/services/data.service';
 import * as firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { MessageApp } from 'src/app/model/message.model';
 
 @Component({
-  selector: 'app-contact-mairie',
-  templateUrl: './contact-mairie.page.html',
-  styleUrls: ['./contact-mairie.page.scss'],
+  selector: 'app-message-mairie',
+  templateUrl: './message-mairie.page.html',
+  styleUrls: ['./message-mairie.page.scss'],
 })
-export class ContactMairiePage implements OnInit {
+export class MessageMairiePage implements OnInit {
 
   public allMessage: Array<MessageApp> = [];
   sendMessageForm: FormGroup;
   errorMessage: string;
   public allUser: Array<string> = [];
+  public email: string;
 
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
     private formBuilder: FormBuilder,
     private router: Router, 
-    private messageService: MessageService ) { 
+    private messageService: MessageService,
+    private route: ActivatedRoute ) { 
     console.log(userApp.role);
   }
 
   ngOnInit() {
-    
+    this.route.params.subscribe(params => {
+      this.email = params['message']; 
+    });
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
-      if (this.userApp.role.toUpperCase()!='MAIRIE'){
+      if (this.userApp.role.toUpperCase()=='MAIRIE'){
         console.log("User fr");
-        this.messageService.receiveMessage(this.userApp).then((allMessage) => {
+        this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
           this.allMessage = allMessage;
         }); 
       }
-      else{
-        console.log("Mairie fr");
-        this.messageService.getAllUser(this.userApp).then((allUser) => {
-          this.allUser = allUser;
-        });
-      }
+      
       }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
@@ -62,15 +61,10 @@ export class ContactMairiePage implements OnInit {
   onSubmit(){
     console.log('coucou');
     const message = this.sendMessageForm.get('message').value;
-    this.messageService.sendMessage(message, this.userApp);
-    this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
+    this.messageService.sendMessageMairie(message, this.userApp, this.email);
+    this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
       this.allMessage = allMessage;
     }); 
     
-  }
-
-  goToMessageMairie(message:string) {
-    console.log("redirectionn");
-    this.router.navigate(['/message-mairie', message]);
   }
 }

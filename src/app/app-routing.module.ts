@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuardMairie } from './services/auth-guard-mairie';
 import { AuthGuard } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -40,6 +41,11 @@ const routes: Routes = [
     path: 'contact-mairie',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/contact-mairie/contact-mairie.module').then( m => m.ContactMairiePageModule)
+  },
+  {
+    path: 'message-mairie/:message',
+    canActivate: [AuthGuardMairie],
+    loadChildren: () => import('./pages/contact-mairie/message-mairie/message-mairie.module').then( m => m.MessageMairiePageModule)
   },
   {
     path: 'contact-us',

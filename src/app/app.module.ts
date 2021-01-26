@@ -21,6 +21,7 @@ import { UserApp } from './model/user.model';
 import { MessageService } from './services/message.service';
 import { DatePipe } from '@angular/common';
 import { MessageApp } from './model/message.model';
+import { AuthGuardMairie } from './services/auth-guard-mairie';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { MessageApp } from './model/message.model';
     SQLite,
     AuthService,
     AuthGuard,
+    AuthGuardMairie,
     DataService,
     UserApp,
     MessageService,

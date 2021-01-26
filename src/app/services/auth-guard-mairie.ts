@@ -6,9 +6,12 @@ import { UserApp } from '../model/user.model';
 import { DataService } from './data.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuardMairie implements CanActivate {
 
-  constructor(private router: Router) { }
+  constructor(public userApp: UserApp, 
+    private dataService: DataService, 
+    private router: Router) { }
+
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return new Promise(
@@ -16,7 +19,18 @@ export class AuthGuard implements CanActivate {
         firebase.default.auth().onAuthStateChanged(
           (user) => {
             if(user) {
-              resolve(true);
+              this.dataService.getOneUser(user.email, this.userApp).then(() => {
+                if (this.userApp.role.toUpperCase()=='MAIRIE'){
+                  resolve(true);
+                }
+                else{
+                  this.router.navigate(['/contact-mairie']);
+                  resolve(false);
+                }
+                }, (raison) => {
+                console.log(raison); // Erreur !
+              });
+              
             } else {
               this.router.navigate(['/auth']);
               resolve(false);

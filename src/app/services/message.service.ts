@@ -21,15 +21,11 @@ export class MessageService {
 
     this.date = new Date();
     console.log(this.date);
-    if (userApp.role.toUpperCase()=='Valid'.toUpperCase())
+    if (userApp.role.toUpperCase()=='VALID'.toUpperCase())
     firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
         message_user: message
       });
-    else if (userApp.role.toUpperCase()=='mairie'.toUpperCase()){
-    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
-        message_mairie: message
-        });
-    }
+    
   }
   
   receiveMessage(userApp: UserApp){
@@ -63,6 +59,18 @@ export class MessageService {
       }
     )
   }
+
+  sendMessageMairie(message : string, userApp: UserApp, email:string){
+
+    this.date = new Date();
+    console.log(this.date);
+    if (userApp.role.toUpperCase()=='MAIRIE'.toUpperCase())
+    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(this.date.toString()).set({
+        message_mairie: message
+      });
+    
+    }
+  
 
   getAllUser(userApp: UserApp){
     return new Promise<Array<string>>(
