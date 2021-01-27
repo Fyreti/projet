@@ -73,13 +73,13 @@ export class AppComponent implements OnInit {
     public userApp:UserApp,
   ) {
     var firebaseConfig = {
-      apiKey: "AIzaSyBEHNcFMoKi8c0muw_riGUqSfx-jvxGm9M",
-      authDomain: "soundcity-e36fa.firebaseapp.com",
-      projectId: "soundcity-e36fa",
-      storageBucket: "soundcity-e36fa.appspot.com",
-      messagingSenderId: "800670036452",
-      appId: "1:800670036452:web:d873650e027c35434157f1",
-      measurementId: "G-6Y7DWJ797F"
+      apiKey: "AIzaSyCRbnhJS76bXL5EnR2GjSkcCKS-LGradA8",
+      authDomain: "sondcity-65de4.firebaseapp.com",
+      projectId: "sondcity-65de4",
+      storageBucket: "sondcity-65de4.appspot.com",
+      messagingSenderId: "321982959422",
+      appId: "1:321982959422:web:606a966ff83bdf87b8666f",
+      measurementId: "G-K7363FC5CH"
     };
     // Initialize Firebase
     firebase.default.initializeApp(firebaseConfig);

@@ -46,7 +46,6 @@ export class ContactMairiePage implements OnInit {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
     this.initForm();
-    this.messageRefresh(this.messageService, this.userApp);
       
   }
 
@@ -82,12 +81,5 @@ export class ContactMairiePage implements OnInit {
     setTimeout( function() {}, 3000);
   }*/
 
-  messageRefresh(messageService: MessageService, userApp: UserApp){ 
-    setInterval( function() {
-      messageService.receiveMessage(userApp).then((allMessage) => {
-        this.allMessage = allMessage;
-      });
-      console.log("coucou")
-    }, 3000);
-  }
+  
 }

@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)
   },
   {
+    path: 'notvalid',
+    loadChildren: () => import('./pages/auth/notvalid/notvalid.module').then( m => m.NotvalidPageModule)
+  },
+  {
     path: 'info-city',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/info-city/info-city.module').then( m => m.InfoCityPageModule)

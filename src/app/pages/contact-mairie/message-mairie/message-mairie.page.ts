@@ -46,7 +46,6 @@ export class MessageMairiePage implements OnInit {
       }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
-    this.messageRefresh(this.messageService, this.userApp);
     this.initForm();
       
   }
@@ -76,12 +75,5 @@ export class MessageMairiePage implements OnInit {
   //   setTimeout( function() {}, 3000);
   // }
 
-  messageRefresh(messageService: MessageService, userApp: UserApp){ 
-    setInterval( function() {
-      messageService.receiveMairieMessage(userApp, userApp.email).then((allMessage) => {
-        this.allMessage = allMessage;
-      });
-      console.log("coucou")
-    }, 3000);
-  }
+  
 }
