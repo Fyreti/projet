@@ -30,8 +30,7 @@ export class MessageService {
     });
     firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
         message_user: message
-      });
-    
+    });
   }
   
   receiveMessage(userApp: UserApp){
@@ -93,7 +92,6 @@ export class MessageService {
         (error) => {
           reject(error);
         }
-        
       }
     )
   }
