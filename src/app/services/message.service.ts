@@ -2,7 +2,7 @@ import { formatDate } from '@angular/common';
 import { Component, Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs';
+import { Observable, pairs } from 'rxjs';
 import { UserApp } from '../model/user.model';
 import { DatePipe } from '@angular/common'
 import { MessageApp } from '../model/message.model';
@@ -22,6 +22,12 @@ export class MessageService {
     this.date = new Date();
     console.log(this.date);
     if (userApp.role.toUpperCase()=='VALID'.toUpperCase())
+    firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+      ville: userApp.ville
+    });
+    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+      email : userApp.email
+    });
     firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
         message_user: message
       });
