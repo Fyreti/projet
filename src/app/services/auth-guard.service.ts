@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
           (user) => {
             if(user) {
                 this.dataService.getOneUser(user.email, this.userApp).then(() => {
-                if (this.userApp.role.toUpperCase()=='VALID'){
+                if (this.userApp.role.toUpperCase()!='NOTVALID'){
                   resolve(true);
                 }
                 else{
