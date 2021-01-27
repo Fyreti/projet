@@ -14,9 +14,22 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <ion-button (click)="goToInfoCityForm()">Ajouter une infoCity</ion-button>
-    <strong class="capitalize">Nouvelle incroyable</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-row>
+    <ion-col>
+    </ion-col>
+    <ion-col>
+      <div><ion-button (click)="goToInfoCityForm()">Ajouter une infoCity</ion-button></div>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+  </ion-row>
+  <ion-card *ngFor= "let info of allInfo">
+    <img src="{{info.photo}}" alt="Une possible photo" />
+    <ion-card-header>
+      <ion-card-title>{{info.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{info.information}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>

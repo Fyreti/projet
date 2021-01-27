@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,9 +13,10 @@ import { InfoCityFormPage } from './info-city-form.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    FormBuilder,
+    ReactiveFormsModule,
     InfoCityFormPageRoutingModule
   ],
   declarations: [InfoCityFormPage]
+  // Ne jamais importer FormBuilder, ça fait crash
 })
 export class InfoCityFormPageModule {}

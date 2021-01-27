@@ -10,7 +10,6 @@ export class DataService {
   constructor() { }
 
   getOneUser(email : string, userApp: UserApp){
-      
     return new Promise(
         (resolve, reject) => {
             firebase.default.firestore().collection('users').doc(email).get().then(doc =>{
@@ -30,9 +29,9 @@ export class DataService {
                     reject();
                 }
         }, (error) => {
+            console.log("erreur getOneUser")
             reject(error);
           } );
-    
     });
   }
   

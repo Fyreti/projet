@@ -34,7 +34,7 @@ export class InfoCityPage implements OnInit {
   }
 
   goToInfoCityForm() {
-    console.log("redirectionn");
+    console.log("redirection");
     this.router.navigate(['/info-city-form']);
   }
 

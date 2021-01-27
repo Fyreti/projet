@@ -36,7 +36,7 @@ export class InfoCityService {
                 this.allInfo = [];
                 snapshot.forEach(doc => {
                     this.infoCity = new InfoCity();
-                    this.infoCity.setInfo(doc.get('ville'), doc.get('information') , doc.get('photo'));
+                    this.infoCity.setInfo(doc.get('name'), doc.get('information') , doc.get('photo'));
                     this.allInfo.push(this.infoCity);  
               });
               

@@ -24,14 +24,13 @@
       </ion-item>
       <ion-item>
         <ion-label>Information</ion-label>
-        <ion-input type="password" formControlName="information"></ion-input>
+        <ion-input type="text" formControlName="information"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Photo</ion-label>
         <ion-input type="text" formControlName="photo"></ion-input>
       </ion-item>
-      <ion-button type="submit" [disabled]="signUpForm.invalid" block>Ajouter une information de ville</ion-button>
+      <ion-button type="submit" [disabled]="infoCityForm.invalid" block>Ajouter une information de ville</ion-button>
     </form>
-    <p class="text-danger">{{ errorMessage }}</p>
   </div>
 </ion-content>
