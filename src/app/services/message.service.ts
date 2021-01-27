@@ -18,7 +18,6 @@ export class MessageService {
   constructor(public datepipe: DatePipe) {  }
 
   sendMessage(message : string, userApp: UserApp){
-
     this.date = new Date();
     console.log(this.date);
     if (userApp.role.toUpperCase()=='VALID'.toUpperCase())
@@ -51,7 +50,6 @@ export class MessageService {
               this.messageApp.setMessage("Mairie", doc.get('message_mairie'));
               this.allMessage.push(this.messageApp);
             }
-            
         });
         
         resolve(this.allMessage);

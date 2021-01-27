@@ -15,17 +15,17 @@ export class InfoCityService {
     
     constructor() {  }
 
-    setInfoCity(userApp: UserApp, value){
+    setInfoCity(userApp: UserApp, name: string, information: string, photo: string){
         if (userApp.role.toUpperCase()=='MAIRIE'){
             firebase.default.firestore().collection('ville').doc(userApp.ville).set({
                 ville: userApp.ville
             });
             firebase.default.firestore().collection('ville').doc(userApp.ville).collection('info-city').doc().set({
-                name: value.name,
-                information: value.information,
-                photo: value.photo
+                name: name,
+                information: information,
+                photo: photo
             });
-        }   
+        }
     }
 
     getInfoCity(userApp: UserApp){

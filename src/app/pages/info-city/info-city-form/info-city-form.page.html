@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>SoundCity Info Ville</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Info City</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <h2>Ajout d'une information sur la ville</h2>
+
+    <form [formGroup]="infoCityForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label>Nom</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Information</ion-label>
+        <ion-input type="password" formControlName="information"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Photo</ion-label>
+        <ion-input type="text" formControlName="photo"></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="signUpForm.invalid" block>Ajouter une information de ville</ion-button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</ion-content>

@@ -13,6 +13,11 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/auth/signup/signup.module').then( m => m.SignupPageModule)
   },
+  
+  {
+    path: 'info-city-form',
+    loadChildren: () => import('src/app/pages/info-city/info-city-form/info-city-form.module').then( m => m.InfoCityFormPageModule)
+  },
   {
     path: 'auth',
     loadChildren: () => import('./pages/auth/auth.module').then( m => m.AuthPageModule)

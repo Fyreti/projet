@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { InfoCity } from 'src/app/model/info-city.model';
 import { UserApp } from 'src/app/model/user.model';
@@ -17,7 +17,8 @@ export class InfoCityPage implements OnInit {
 
   constructor(public infoCityService: InfoCityService,
               public userApp: UserApp,
-              public dataService: DataService) { }
+              public dataService: DataService,
+              public router: Router) { }
 
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
@@ -30,6 +31,11 @@ export class InfoCityPage implements OnInit {
     }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
+  }
+
+  goToInfoCityForm() {
+    console.log("redirectionn");
+    this.router.navigate(['/info-city-form']);
   }
 
 }

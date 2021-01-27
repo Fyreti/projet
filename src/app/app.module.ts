@@ -22,6 +22,7 @@ import { MessageService } from './services/message.service';
 import { DatePipe } from '@angular/common';
 import { MessageApp } from './model/message.model';
 import { AuthGuardMairie } from './services/auth-guard-mairie';
+import { InfoCityService } from './services/info-city.service';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { AuthGuardMairie } from './services/auth-guard-mairie';
     AuthGuard,
     AuthGuardMairie,
     DataService,
+    InfoCityService,
     UserApp,
     MessageService,
     DatePipe,
