@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>SoundCity Vote</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">Vote </strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <form [formGroup]="addvoteForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label>Titre Vote</ion-label>
+        <ion-input type="text" formControlName="titre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Question</ion-label>
+        <ion-input type="text" formControlName="question"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Réponse possible séparé chaque réponse par une virgule ex : (oui, non, blanc)</ion-label>
+        <ion-input type="text" formControlName="reponse"></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="addvoteForm.invalid" block>Send</ion-button>
+    </form>
+  </div>
+</ion-content>

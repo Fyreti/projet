@@ -23,17 +23,27 @@ private allVote : Array<string> = [];
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
+      this.voteservice.getAllVote(this.userApp).then( allVote => {
+        this.allVote = allVote;
+      });
       }, (raison) => {
       console.log(raison); // Erreur !
     });
 
-    this.voteservice.getAllVote(this.userApp).then( allVote => {
-      this.allVote = allVote;
-    });
   }
 
   goToVote(vote:string) {
     console.log("redirectionn");
     this.router.navigate(['/dovote', vote]);
+  }
+
+  goToAddVote(vote:string) {
+    console.log("redirectionn");
+    this.router.navigate(['/addvote']);
+  }
+
+  goToResultVote(vote: string){
+    console.log("redirectionn");
+    this.router.navigate(['/resultvote', vote]);
   }
 }

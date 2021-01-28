@@ -52,6 +52,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/vote/dovote/dovote.module').then( m => m.DovotePageModule)
   },
   {
+    path: 'resultvote/:vote',
+    canActivate: [AuthGuardMairie],
+    loadChildren: () => import('./pages/vote/resultvote/resultvote.module').then( m => m.ResultvotePageModule)
+  },
+  {
     path: 'faq',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FAQPageModule)

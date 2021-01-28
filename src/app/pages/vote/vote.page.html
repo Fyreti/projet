@@ -21,3 +21,19 @@
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
   </div>
 </ion-content>
+
+<ion-content *ngIf="(userApp.role|uppercase) === 'MAIRIE'" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-button (click)="goToAddVote(vote)">Ajouter un vote</ion-button>
+  <ion-list>
+    <ion-button *ngFor="let vote of allVote" (click)="goToResultVote(vote)">{{vote}}</ion-button>
+  </ion-list>
+  <div id="container">
+    <strong class="capitalize">Hey Vote</strong>
+    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
