@@ -47,6 +47,12 @@ export class MessageMairiePage implements OnInit {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
     this.initForm();
+
+    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc('fdp@gmail.com').collection('message').doc()
+    .onSnapshot(function(querySnapshot) {
+        
+        console.log("Current cities in CA: ");
+    });
       
   }
 

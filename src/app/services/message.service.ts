@@ -20,7 +20,7 @@ export class MessageService {
   sendMessage(message : string, userApp: UserApp){
     this.date = new Date();
     console.log(this.date);
-    if (userApp.role.toUpperCase()=='VALID'.toUpperCase())
+    if (userApp.role.toUpperCase()==='VALID'.toUpperCase())
     firebase.default.firestore().collection('ville').doc(userApp.ville).set({
       ville: userApp.ville
     });
