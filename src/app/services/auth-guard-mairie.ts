@@ -24,13 +24,12 @@ export class AuthGuardMairie implements CanActivate {
                   resolve(true);
                 }
                 else{
-                  this.router.navigate(['/contact-mairie']);
+                  this.router.navigate(['/info-city']);
                   resolve(false);
                 }
                 }, (raison) => {
                 console.log(raison); // Erreur !
               });
-              
             } else {
               this.router.navigate(['/auth']);
               resolve(false);
