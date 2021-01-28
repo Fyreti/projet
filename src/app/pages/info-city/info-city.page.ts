@@ -23,11 +23,9 @@ export class InfoCityPage implements OnInit {
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
-        if (this.userApp.role.toUpperCase()=='MAIRIE'){
-          this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
-            this.allInfo = allInfo;
-          }); 
-        }
+      this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
+        this.allInfo = allInfo;
+      }); 
     }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected

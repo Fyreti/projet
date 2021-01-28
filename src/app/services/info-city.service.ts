@@ -38,14 +38,14 @@ export class InfoCityService {
                     this.infoCity = new InfoCity();
                     this.infoCity.setInfo(doc.get('name'), doc.get('information') , doc.get('photo'));
                     this.allInfo.push(this.infoCity);  
-              });
+                });
               
-              resolve(this.allInfo);
-            })
-              .catch(function(error) {
-                  console.log("Error getting documents: ", error);
-                  reject();
-              });
+                resolve(this.allInfo);
+                })
+                .catch(function(error) {
+                    console.log("Error getting documents: ", error);
+                    reject();
+                });
             }
         );
     }

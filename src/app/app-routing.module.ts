@@ -16,6 +16,7 @@ const routes: Routes = [
   
   {
     path: 'info-city-form',
+    canActivate: [AuthGuardMairie],
     loadChildren: () => import('src/app/pages/info-city/info-city-form/info-city-form.module').then( m => m.InfoCityFormPageModule)
   },
   {
