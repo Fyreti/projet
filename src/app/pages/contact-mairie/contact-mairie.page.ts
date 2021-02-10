@@ -65,11 +65,12 @@ export class ContactMairiePage implements OnInit {
   onSubmit(){
     console.log('coucou');
     const message = this.sendMessageForm.get('message').value;
+    
     this.messageService.sendMessage(message, this.userApp);
     this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
       this.allMessage = allMessage;
     }); 
-    
+    this.sendMessageForm.reset();
   }
 
   goToMessageMairie(message:string) {

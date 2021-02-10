@@ -18,18 +18,22 @@ export class MessageService {
   constructor(public datepipe: DatePipe) {  }
 
   sendMessage(message : string, userApp: UserApp){
-    this.date = new Date();
-    console.log(this.date);
-    if (userApp.role.toUpperCase()==='VALID'.toUpperCase())
-    firebase.default.firestore().collection('ville').doc(userApp.ville).set({
-      ville: userApp.ville
-    });
-    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
-      email : userApp.email
-    });
-    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
-        message_user: message
-    });
+    if (message !== null){
+      if ((message.replace(/ /g, "").length !== 0)){
+        this.date = new Date();
+        console.log(this.date);
+        if (userApp.role.toUpperCase()==='VALID'.toUpperCase())
+        firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+          ville: userApp.ville
+        });
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+          email : userApp.email
+        });
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
+            message_user: message
+        });
+      }
+    }
   }
   
   receiveMessage(userApp: UserApp){
@@ -64,15 +68,17 @@ export class MessageService {
   }
 
   sendMessageMairie(message : string, userApp: UserApp, email:string){
-
+    if (message !== null){
+      if ((message.replace(/ /g, "").length !== 0)){
     this.date = new Date();
     console.log(this.date);
     if (userApp.role.toUpperCase()=='MAIRIE'.toUpperCase())
     firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(this.date.toString()).set({
         message_mairie: message
       });
-    
+      }
     }
+  }
   
 
   getAllUser(userApp: UserApp){

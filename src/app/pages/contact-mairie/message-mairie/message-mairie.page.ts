@@ -71,6 +71,7 @@ export class MessageMairiePage implements OnInit {
     this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
       this.allMessage = allMessage;
     }); 
+    this.sendMessageForm.reset();
   }
 
   // messageRefresh(){
