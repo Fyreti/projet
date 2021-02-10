@@ -36,11 +36,12 @@
       <ion-label id="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
     </ion-item>
     <form [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
-      <ion-item>
+      <ion-item color="primary">
         <ion-label>Message</ion-label>
         <ion-input type="text" formControlName="message"></ion-input>
+        <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
       </ion-item>
-      <ion-button type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+      
     </form>
   </ion-list>
   <div id="container">
