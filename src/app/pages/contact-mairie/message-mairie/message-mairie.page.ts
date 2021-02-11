@@ -48,11 +48,13 @@ export class MessageMairiePage implements OnInit {
     });//set the object userApp with all info of the user who is connected
     this.initForm();
 
-    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc('fdp@gmail.com').collection('message').doc()
-    .onSnapshot(function(querySnapshot) {
-        
-        console.log("Current cities in CA: ");
-    });
+    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc('coucou@gmail.com').collection('message')
+    .onSnapshot((querySnapshot) => {
+      this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
+        this.allMessage = allMessage;
+      }); 
+      console.log("peut etre reussi à ");
+  });
       
   }
 
@@ -68,9 +70,9 @@ export class MessageMairiePage implements OnInit {
     console.log('coucou');
     const message = this.sendMessageForm.get('message').value;
     this.messageService.sendMessageMairie(message, this.userApp, this.email);
-    this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+    /*this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
       this.allMessage = allMessage;
-    }); 
+    }); */
     this.sendMessageForm.reset();
   }
 
