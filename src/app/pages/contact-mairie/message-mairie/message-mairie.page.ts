@@ -50,9 +50,9 @@ export class MessageMairiePage implements OnInit {
 
     firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc('coucou@gmail.com').collection('message')
     .onSnapshot((querySnapshot) => {
-      this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
+      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
         this.allMessage = allMessage;
-      }); 
+      });
       console.log("peut etre reussi à ");
   });
       
