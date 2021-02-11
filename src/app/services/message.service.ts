@@ -21,7 +21,6 @@ export class MessageService {
     if (message !== null){
       if ((message.replace(/ /g, "").length !== 0)){
         this.date = new Date();
-        console.log(this.date);
         if (userApp.role.toUpperCase()==='VALID'.toUpperCase())
         firebase.default.firestore().collection('ville').doc(userApp.ville).set({
           ville: userApp.ville
@@ -29,7 +28,7 @@ export class MessageService {
         firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
           email : userApp.email
         });
-        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(this.date.toString()).set({
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
             message_user: message
         });
       }
@@ -68,14 +67,21 @@ export class MessageService {
   }
 
   sendMessageMairie(message : string, userApp: UserApp, email:string){
+    console.log(message);
     if (message !== null){
+      console.log((message.replace(/ /g, "").length));
       if ((message.replace(/ /g, "").length !== 0)){
-    this.date = new Date();
-    console.log(this.date);
-    if (userApp.role.toUpperCase()=='MAIRIE'.toUpperCase())
-    firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(this.date.toString()).set({
-        message_mairie: message
-      });
+        this.date = new Date();
+        console.log(this.date);
+        if (userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+            message_mairie: message
+          });
+          console.log(userApp.ville);
+          console.log(email);
+          console.log(message);
+        }
+        
       }
     }
   }
