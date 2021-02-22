@@ -42,7 +42,7 @@ export class AuthComponent implements OnInit {
         this.router.navigate(['/info-city']);
       },
       (error) => {
-        console.log("error sur le onSubmit");
+        console.log("wrong password or email");
         this.errorMessage = error;
       }
     );

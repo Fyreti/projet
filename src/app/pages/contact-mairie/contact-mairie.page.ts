@@ -17,7 +17,7 @@ export class ContactMairiePage implements OnInit {
   public allMessage: Array<MessageApp> = [];
   sendMessageForm: FormGroup;
   errorMessage: string;
-  public allUser: Array<string> = [];
+  public allNotif: Map<string,number>;
 
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
@@ -38,8 +38,8 @@ export class ContactMairiePage implements OnInit {
       }
       else{
         console.log("Mairie fr");
-        this.messageService.getAllUser(this.userApp).then((allUser) => {
-          this.allUser = allUser;
+        this.messageService.getAllUser(this.userApp).then((allNotif) => {
+          this.allNotif = allNotif;
         });
       }
       }, (raison) => {
@@ -55,6 +55,11 @@ export class ContactMairiePage implements OnInit {
     .onSnapshot((querySnapshot) => {
       this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
         this.allMessage = allMessage;
+        if (this.userApp.role.toUpperCase()=='MAIRIE'){
+          this.messageService.getAllUser(this.userApp).then((allNotif) => {
+            this.allNotif = allNotif;
+          });
+        }
       }); 
       console.log("peut etre reussi à ");
   });

@@ -21,16 +21,42 @@ export class MessageService {
     if (message !== null){
       if ((message.replace(/ /g, "").length !== 0)){
         this.date = new Date();
-        if (userApp.role.toUpperCase()==='VALID'.toUpperCase())
-        firebase.default.firestore().collection('ville').doc(userApp.ville).set({
-          ville: userApp.ville
-        });
-        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
-          email : userApp.email
-        });
-        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
-            message_user: message
-        });
+
+        if (firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email)){
+          if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+              ville: userApp.ville
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+              email : userApp.email,
+              notif_mairie: 0,
+              notif_user: 0
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+                message_user: message
+            });
+          }
+        }
+        else{
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+          .then( doc => {
+          
+          if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+              ville: userApp.ville
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+              email : userApp.email,
+              notif_mairie: doc.get('notif_mairie') + 1
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+                message_user: message
+            });
+          }
+        })
+        }
+
+        
       }
     }
   }
@@ -88,16 +114,17 @@ export class MessageService {
   
 
   getAllUser(userApp: UserApp){
-    return new Promise<Array<string>>(
+    let allNotif = new Map<string, number>();
+    return new Promise<Map<string, number>>(
       (resolve, reject) => {
         
         firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').onSnapshot((querySnapshot) => {
           this.allUser = [];
           querySnapshot.forEach((doc) => {
             console.log(doc.id); // For doc name
-            this.allUser.push(doc.id);
+            allNotif.set(doc.id,doc.get('notif_mairie'));
           });
-          resolve(this.allUser);
+          resolve(allNotif);
         }),
         (error) => {
           reject(error);
