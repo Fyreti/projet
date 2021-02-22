@@ -30,16 +30,38 @@ export class ContactMairiePage implements OnInit {
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
-      if (this.userApp.role.toUpperCase()!='MAIRIE'){
+      if (this.userApp.role.toUpperCase()==='VALID'){
         console.log("User fr");
         this.messageService.receiveMessage(this.userApp).then((allMessage) => {
           this.allMessage = allMessage;
         }); 
+        this.messageService.resetNotifUser(this.userApp);
+        firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email)
+          .onSnapshot((querySnapshot) => {
+            if (this.router.url === '/contact-mairie'){
+              this.messageService.resetNotifUser(this.userApp);
+              console.log("changement user");
+              this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
+                this.allMessage = allMessage;
+                
+              }); 
+            }
+            
+        });
       }
-      else{
+      else if (this.userApp.role.toUpperCase()==='MAIRIE'){
         console.log("Mairie fr");
         this.messageService.getAllUser(this.userApp).then((allNotif) => {
           this.allNotif = allNotif;
+          
+          firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie')
+          .onSnapshot((querySnapshot) => {
+            if (this.router.url === '/contact-mairie'){
+              this.messageService.getAllUser(this.userApp).then((allNotif) => {
+                this.allNotif = allNotif;
+              });
+            }
+          });
         });
       }
       }, (raison) => {
@@ -51,18 +73,8 @@ export class ContactMairiePage implements OnInit {
         
         console.log("t dans coucou@gmail ");
     });*/
-    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc('coucou@gmail.com').collection('message')
-    .onSnapshot((querySnapshot) => {
-      this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
-        this.allMessage = allMessage;
-        if (this.userApp.role.toUpperCase()=='MAIRIE'){
-          this.messageService.getAllUser(this.userApp).then((allNotif) => {
-            this.allNotif = allNotif;
-          });
-        }
-      }); 
-      console.log("peut etre reussi à ");
-  });
+    
+    
   }
 
   initForm(){

@@ -21,43 +21,44 @@ export class MessageService {
     if (message !== null){
       if ((message.replace(/ /g, "").length !== 0)){
         this.date = new Date();
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+        .then((docSnapshot) => {
 
-        if (!firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email)){
-          if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
-            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
-              ville: userApp.ville
-            });
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
-              email : userApp.email,
-              notif_mairie: 0,
-              notif_user: 0
-            });
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
-                message_user: message
-            });
+          if (docSnapshot.exists) {
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+            .then( doc => {
+            if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+              firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+                ville: userApp.ville
+              });
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+                email : userApp.email,
+                notif_mairie: doc.get('notif_mairie') + 1,
+                notif_user: doc.get('notif_user')
+              });
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+                  message_user: message
+              });
+            }
+            })
           }
-        }
-        else{
-          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
-          .then( doc => {
-          
-          if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
-            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
-              ville: userApp.ville
-            });
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
-              email : userApp.email,
-              notif_mairie: doc.get('notif_mairie') + 1,
-              notif_user: doc.get('notif_user') + 1
-            });
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
-                message_user: message
-            });
+
+          else{
+            if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+              firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+                ville: userApp.ville
+              });
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+                email : userApp.email,
+                notif_mairie: 0,
+                notif_user: 0
+              });
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+                  message_user: message
+              });
+            }
           }
         })
-        }
-
-        
       }
     }
   }
@@ -94,6 +95,31 @@ export class MessageService {
   }
 
   sendMessageMairie(message : string, userApp: UserApp, email:string){
+    if (message !== null){
+      if ((message.replace(/ /g, "").length !== 0)){
+        this.date = new Date();
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
+        .then((docSnapshot) => {
+          if (docSnapshot.exists) {
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
+            .then( doc => {
+            if (userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+              
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).set({
+                email : email,
+                notif_mairie: doc.get('notif_mairie'),
+                notif_user: doc.get('notif_user') + 1
+              });
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+                message_mairie: message
+              });
+            }
+            })
+          }
+        })
+      }
+    }
+
     console.log(message);
     if (message !== null){
       console.log((message.replace(/ /g, "").length));
@@ -162,6 +188,80 @@ export class MessageService {
             reject();
         });
     
+      }
+    )
+  }
+
+  resetNotifMairie(userApp: UserApp, email: string){
+    if(userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+      firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
+      .then((docSnapshot) => {
+
+        if (docSnapshot.exists) {
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
+          .then( doc => {
+          if (userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+              ville: userApp.ville
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).set({
+              email : email,
+              notif_mairie: 0,
+              notif_user: doc.get('notif_user')
+            });
+          }
+          })
+        }
+      })
+      
+    }
+  }
+
+  resetNotifUser(userApp: UserApp){
+    if(userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+      firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+      .then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+          .then( doc => {
+          if (userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).set({
+              ville: userApp.ville
+            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
+              email : userApp.email,
+              notif_mairie: doc.get('notif_mairie'),
+              notif_user: 0
+            });
+          }
+          })
+        }
+      })
+    }
+  }
+
+  getNotifUser(userApp: UserApp){
+    return new Promise<number>(
+      (resolve, reject) => {
+        if(userApp.role.toUpperCase()==='VALID'.toUpperCase()){
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+          .then((docSnapshot) => {
+            if (docSnapshot.exists) {
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).get()
+              .then( doc => {
+                resolve(doc.get('notif_user'));
+              })
+              .catch(function(error) {
+                console.log("Error get Notif User: ", error);
+                reject();
+            });
+            }
+          })
+          .catch(function(error) {
+            console.log("Error get Notif User: ", error);
+            reject();
+        });
+        }
       }
     )
   }

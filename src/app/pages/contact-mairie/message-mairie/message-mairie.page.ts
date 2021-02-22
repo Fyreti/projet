@@ -41,6 +41,7 @@ export class MessageMairiePage implements OnInit {
         this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
           this.allMessage = allMessage;
         }); 
+        this.messageService.resetNotifMairie(this.userApp, this.email);
       }
       
       }, (raison) => {
@@ -48,12 +49,16 @@ export class MessageMairiePage implements OnInit {
     });//set the object userApp with all info of the user who is connected
     this.initForm();
 
-    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc('coucou@gmail.com').collection('message')
+    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie')
     .onSnapshot((querySnapshot) => {
-      this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
-        this.allMessage = allMessage;
-      });
-      console.log("peut etre reussi à ");
+      if (this.router.url === '/message-mairie/'+this.email){
+        console.log('okcbon');
+        this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+          this.allMessage = allMessage;
+        });
+        this.messageService.resetNotifMairie(this.userApp, this.email);
+      }
+      
   });
       
   }

@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 import { Console } from 'console';
 import { DataService } from './services/data.service';
 import { UserApp } from './model/user.model';
+import { MessageService } from './services/message.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { UserApp } from './model/user.model';
 export class AppComponent implements OnInit {
   public isAuth: boolean;
   public getData : any;
+  public notif: number = 0;
   //public userApp: UserApp;
 
   public selectedIndex = 0;
@@ -71,6 +73,7 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private dataService: DataService,
     public userApp:UserApp,
+    private messageService: MessageService
   ) {
     var firebaseConfig = {
       apiKey: "AIzaSyCRbnhJS76bXL5EnR2GjSkcCKS-LGradA8",
@@ -99,15 +102,37 @@ export class AppComponent implements OnInit {
         if(user) {
           console.log("isAuth:True");
           this.isAuth = true;
-          this.dataService.getOneUser(user.email, this.userApp).then();
+          var that = this;//pointeur
+          this.dataService.getOneUser(user.email, this.userApp).then(
+            function(){
+              
+              if (that.userApp.role.toUpperCase() === 'VALID'){
+                that.messageService.getNotifUser(that.userApp).then(notif => {
+                  that.notif = notif;
+                });
+                firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(that.userApp.email)
+                .onSnapshot((querySnapshot) => {
+                  that.messageService.getNotifUser(that.userApp).then(notif => {
+                    that.notif = notif;
+                  });
+              });
+                
+              }
+              else if (that.userApp.role.toUpperCase() === 'MAIRIE'){
+                that.notif = 0;
+              }
+            }
+          );
           console.log(this.userApp.email);
+          
         } else {
           console.log("isAuth:False");
           this.isAuth = false;
         }
       }
     );
-      
+    
+    
   }
 
   onSignOut(titleSelect : string) {
