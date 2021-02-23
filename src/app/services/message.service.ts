@@ -193,7 +193,7 @@ export class MessageService {
   }
 
   resetNotifMairie(userApp: UserApp, email: string){
-    if(userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+    if(userApp.role.toUpperCase()==='MAIRIE'){
       firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
       .then((docSnapshot) => {
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserApp } from 'src/app/model/user.model';
 import { DataService } from 'src/app/services/data.service';
 import * as firebase from 'firebase';
@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { MessageApp } from 'src/app/model/message.model';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-message-mairie',
@@ -13,7 +14,7 @@ import { MessageApp } from 'src/app/model/message.model';
   styleUrls: ['./message-mairie.page.scss'],
 })
 export class MessageMairiePage implements OnInit {
-
+  @ViewChild('content') private content:any;
   public allMessage: Array<MessageApp> = [];
   sendMessageForm: FormGroup;
   errorMessage: string;
@@ -30,6 +31,16 @@ export class MessageMairiePage implements OnInit {
     console.log(userApp.role);
   }
 
+  ionViewDidEnter(){
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+        this.content.scrollToBottom();
+    });
+  }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.email = params['message']; 
@@ -37,6 +48,7 @@ export class MessageMairiePage implements OnInit {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       if (this.userApp.role.toUpperCase()=='MAIRIE'){
+        this.ionViewDidEnter();
         console.log("User fr");
         this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
           this.allMessage = allMessage;
@@ -55,8 +67,10 @@ export class MessageMairiePage implements OnInit {
         console.log('okcbon');
         this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
           this.allMessage = allMessage;
+          this.ionViewDidEnter();
         });
         this.messageService.resetNotifMairie(this.userApp, this.email);
+        
       }
       
   });

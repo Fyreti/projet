@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserApp } from 'src/app/model/user.model';
 import { DataService } from 'src/app/services/data.service';
 import * as firebase from 'firebase';
@@ -13,7 +13,7 @@ import { MessageApp } from 'src/app/model/message.model';
   styleUrls: ['./contact-mairie.page.scss'],
 })
 export class ContactMairiePage implements OnInit {
-
+  @ViewChild('content') private content:any;
   public allMessage: Array<MessageApp> = [];
   sendMessageForm: FormGroup;
   errorMessage: string;
@@ -27,11 +27,21 @@ export class ContactMairiePage implements OnInit {
     console.log(userApp.role);
   }
 
+  ionViewDidEnter(){
+    this.scrollToBottom();
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+        this.content.scrollToBottom();
+    });
+  }
+
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       if (this.userApp.role.toUpperCase()==='VALID'){
-        console.log("User fr");
+        this.ionViewDidEnter();
         this.messageService.receiveMessage(this.userApp).then((allMessage) => {
           this.allMessage = allMessage;
         }); 
@@ -40,10 +50,9 @@ export class ContactMairiePage implements OnInit {
           .onSnapshot((querySnapshot) => {
             if (this.router.url === '/contact-mairie'){
               this.messageService.resetNotifUser(this.userApp);
-              console.log("changement user");
               this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
                 this.allMessage = allMessage;
-                
+                this.ionViewDidEnter();
               }); 
             }
             

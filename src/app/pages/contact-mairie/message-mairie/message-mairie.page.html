@@ -7,13 +7,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="(userApp.role | uppercase)==='MAIRIE'"[fullscreen]="true">
+<ion-content #content padding class="chatPage" *ngIf="(userApp.role | uppercase)==='MAIRIE'"[fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
+  <ion-list no-lines>
     <ion-item *ngFor="let message of allMessage">
       <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
       <ion-label  *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
