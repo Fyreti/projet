@@ -50,7 +50,7 @@ export class MessageService {
               });
               firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).set({
                 email : userApp.email,
-                notif_mairie: 0,
+                notif_mairie: 1,
                 notif_user: 0
               });
               firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
