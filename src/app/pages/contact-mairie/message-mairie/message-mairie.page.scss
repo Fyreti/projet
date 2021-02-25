@@ -41,3 +41,28 @@ ion-menu-button {
   ion-list{
     margin-bottom: 40px;
   }
+  #Title{
+    text-align: center;
+    font-family: Candara;
+    margin-bottom: 2%;
+  }
+
+  @media (max-width: 1000px) {
+
+    #Title{
+      margin-bottom: 5%;
+    }
+    
+    }
+
+  #accueil_logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:20%;
+    height:30%;
+  }
+
+  .input-wrapper{
+    background-color: green;
+  }
