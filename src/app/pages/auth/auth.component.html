@@ -1,19 +1,26 @@
 <ion-header [translucent]="true">
 </ion-header>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <ion-content [fullscreen]="true">
   <div id="container">
-    <h2>Connexion</h2>
+    <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
+    <h2 id="connexion" >Bienvenue sur SondCity !</h2>
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
       <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
+        <ion-label class='ion_label' >Email</ion-label>
+        <ion-input class='ion_label' type="text" formControlName="email"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
+        <ion-label class='ion_label' >Password</ion-label>
+        <ion-input class='ion_label' type="password" formControlName="password"></ion-input>
       </ion-item>
-      <ion-button type="submit" [disabled]="signInForm.invalid" block>Connexion</ion-button>
+
+      <ion-button class='ion_label' type="submit" [disabled]="signInForm.invalid" block>Connexion</ion-button>
+      
     </form>
   </div>
 </ion-content>
