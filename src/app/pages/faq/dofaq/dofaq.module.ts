@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddfaqPageRoutingModule } from './addfaq-routing.module';
+import { DofaqPageRoutingModule } from './dofaq-routing.module';
 
-import { AddfaqPage } from './addfaq.page';
+import { DofaqPage } from './dofaq.page';
 import { UserApp } from 'src/app/model/user.model';
 
 @NgModule({
@@ -14,12 +14,12 @@ import { UserApp } from 'src/app/model/user.model';
     CommonModule,
     FormsModule,
     IonicModule,
-    AddfaqPageRoutingModule,
+    DofaqPageRoutingModule,
     ReactiveFormsModule
   ],
   providers: [
     UserApp
   ],
-  declarations: [AddfaqPage]
+  declarations: [DofaqPage]
 })
-export class AddfaqPageModule {}
+export class DofaqPageModule {}

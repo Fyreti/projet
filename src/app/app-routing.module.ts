@@ -63,6 +63,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FAQPageModule)
   },
   {
+    path: 'addfaq',
+    canActivate: [AuthGuardMairie],
+    loadChildren: () => import('./pages/faq/addfaq/addfaq.module').then( m => m.AddfaqPageModule)
+  },
+  {
+    path: 'dofaq/:faq',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/faq/dofaq/dofaq.module').then( m => m.DofaqPageModule)
+  },
+  {
     path: 'contact-mairie',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/contact-mairie/contact-mairie.module').then( m => m.ContactMairiePageModule)
