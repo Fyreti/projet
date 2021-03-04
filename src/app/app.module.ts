@@ -25,6 +25,8 @@ import { AuthGuardMairie } from './services/auth-guard-mairie';
 import { InfoCityService } from './services/info-city.service';
 import { VoteService } from './services/vote.service';
 import { FaqService } from './services/faq.service';
+import { EventService } from './services/event.service';
+import { Event } from './model/event.model'
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +53,8 @@ import { FaqService } from './services/faq.service';
     MessageApp,
     VoteService,
     FaqService,
+    EventService,
+    Event,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

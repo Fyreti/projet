@@ -13,7 +13,11 @@ const routes: Routes = [
     path: 'signup',
     loadChildren: () => import('./pages/auth/signup/signup.module').then( m => m.SignupPageModule)
   },
-  
+  {
+    path: 'event-form',
+    canActivate: [AuthGuardMairie],
+    loadChildren: () => import('src/app/pages/event/event-form/event-form.module').then( m => m.EventFormPageModule)
+  },
   {
     path: 'info-city-form',
     canActivate: [AuthGuardMairie],
@@ -33,9 +37,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/info-city/info-city.module').then( m => m.InfoCityPageModule)
   },
   {
-    path: 'events',
+    path: 'event',
     canActivate: [AuthGuard],
-    loadChildren: () => import('./pages/events/events.module').then( m => m.EventsPageModule)
+    loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule)
   },
   {
     path: 'vote',
