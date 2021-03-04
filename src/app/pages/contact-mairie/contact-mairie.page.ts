@@ -27,9 +27,6 @@ export class ContactMairiePage implements OnInit {
     console.log(userApp.role);
   }
 
-  ionViewDidEnter(){
-    this.scrollToBottom();
-  }
 
   scrollToBottom() {
     setTimeout(() => {
@@ -41,7 +38,7 @@ export class ContactMairiePage implements OnInit {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       if (this.userApp.role.toUpperCase()==='VALID'){
-        this.ionViewDidEnter();
+        this.scrollToBottom();
         this.messageService.receiveMessage(this.userApp).then((allMessage) => {
           this.allMessage = allMessage;
         }); 
@@ -52,7 +49,7 @@ export class ContactMairiePage implements OnInit {
               this.messageService.resetNotifUser(this.userApp);
               this.messageService.receiveMessage(this.userApp).then((allMessage)=> {
                 this.allMessage = allMessage;
-                this.ionViewDidEnter();
+                this.scrollToBottom();
               }); 
             }
             

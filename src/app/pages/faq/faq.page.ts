@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserApp } from 'src/app/model/user.model';
 import { DataService } from 'src/app/services/data.service';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
+import { FaqService } from 'src/app/services/faq.service';
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.page.html',
@@ -10,13 +12,34 @@ import * as firebase from 'firebase';
 })
 export class FAQPage implements OnInit {
 
-  constructor(public userApp: UserApp, private dataService: DataService) { 
-    console.log(userApp.email);
-  }
+  private allFaq : Array<string> = [];
+
+  constructor(public userApp: UserApp,
+    private dataService: DataService,
+    private faqservice: FaqService,
+    private router: Router ) { }
 
   ngOnInit() {
-    var user = firebase.default.auth().currentUser;//Get the user who is connected
-    this.dataService.getOneUser(user.email, this.userApp).then();//set the object userApp with all info of the user who is connected
+    var user = firebase.default.auth().currentUser; //Get the user who is connected
+    this.dataService.getOneUser(user.email, this.userApp).then(() => {
+      this.faqservice.getAllFaq(this.userApp).then( allFaq => {
+        this.allFaq = allFaq;
+      });
+      }, (raison) => {
+      console.log(raison); // Erreur !
+    });
+
   }
+
+  goToFaq(vote:string) {
+    console.log("redirectionn");
+    this.router.navigate(['/dofaq', vote]);
+  }
+
+  goToAddFaq(vote:string) {
+    console.log("redirectionn");
+    this.router.navigate(['/addfaq']);
+  }
+
 
 }

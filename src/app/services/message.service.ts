@@ -200,7 +200,7 @@ export class MessageService {
         if (docSnapshot.exists) {
           firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).get()
           .then( doc => {
-          if (userApp.role.toUpperCase()==='MAIRIE'.toUpperCase()){
+          if (userApp.role.toUpperCase()==='MAIRIE'){
             firebase.default.firestore().collection('ville').doc(userApp.ville).set({
               ville: userApp.ville
             });
