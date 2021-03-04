@@ -37,7 +37,7 @@ private allVote : Array<string> = [];
     this.router.navigate(['/dovote', vote]);
   }
 
-  goToAddVote(vote:string) {
+  goToAddVote() {
     console.log("redirectionn");
     this.router.navigate(['/addvote']);
   }

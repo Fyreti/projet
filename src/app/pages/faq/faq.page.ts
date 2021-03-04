@@ -31,12 +31,12 @@ export class FAQPage implements OnInit {
 
   }
 
-  goToFaq(vote:string) {
+  goToFaq(faq:string) {
     console.log("redirectionn");
-    this.router.navigate(['/dofaq', vote]);
+    this.router.navigate(['/dofaq', faq]);
   }
 
-  goToAddFaq(vote:string) {
+  goToAddFaq() {
     console.log("redirectionn");
     this.router.navigate(['/addfaq']);
   }

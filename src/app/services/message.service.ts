@@ -6,13 +6,16 @@ import { Observable, pairs } from 'rxjs';
 import { UserApp } from '../model/user.model';
 import { DatePipe } from '@angular/common'
 import { MessageApp } from '../model/message.model';
+import { MessageFaq } from '../model/messagefaq.model';
 
 @Injectable()
 export class MessageService {
     public allMessage: Array<MessageApp> = [];
+    public allMessageFaq: Array<MessageFaq> = [];
     public message: string;
     public date: Date;
     public messageApp : MessageApp;
+    public messageFaq : MessageFaq;
     public allUser: Array<string> = [];
     
   constructor(public datepipe: DatePipe) {  }
@@ -119,7 +122,7 @@ export class MessageService {
         })
       }
     }
-
+/*
     console.log(message);
     if (message !== null){
       console.log((message.replace(/ /g, "").length));
@@ -136,7 +139,7 @@ export class MessageService {
         }
         
       }
-    }
+    }*/
   }
   
 
@@ -264,5 +267,63 @@ export class MessageService {
         }
       }
     )
+  }
+
+  receiveMessagefaq(userApp: UserApp, faq: string){
+    return new Promise<Array<MessageFaq>>(
+      (resolve, reject) => {
+        firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').get()
+        .then(snapshot => {
+          this.allMessageFaq = [];
+          snapshot.forEach(doc => {
+            // doc.data() is never undefined for query doc snapshots
+            if (doc.get('message_user')){
+              this.messageFaq = new MessageFaq();
+              this.messageFaq.setMessage("User", doc.get('message_user'), doc.get('email'));
+              this.allMessageFaq.push(this.messageFaq);
+            }
+            else{
+              this.messageFaq = new MessageFaq();
+              this.messageFaq.setMessage("Mairie", doc.get('message_mairie'), doc.get('email'));
+              this.allMessageFaq.push(this.messageFaq);
+            }
+            
+        });
+        
+        resolve(this.allMessageFaq);
+      })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+            reject();
+        });
+    
+      }
+    )
+  }
+
+  sendMessageFaq(message : string, userApp: UserApp, faq:string){
+    if (message !== null){
+      if ((message.replace(/ /g, "").length !== 0)){
+        this.date = new Date();
+        if (userApp.role.toUpperCase() === "MAIRIE" || userApp.role.toUpperCase() === "VALID"){
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).set({
+            faq : faq
+          });
+          if (userApp.role.toUpperCase() === "MAIRIE"){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+              message_mairie: message,
+              email: userApp.email
+            });
+          }
+          else if (userApp.role.toUpperCase() === "VALID"){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+              message_user: message,
+              email: userApp.email
+            });
+          }
+        }
+        
+      }
+    }
   }
 }

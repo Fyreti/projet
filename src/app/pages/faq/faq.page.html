@@ -28,9 +28,9 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button (click)="goToAddFaq(faq)">Ajouter une faq</ion-button>
+  <ion-button (click)="goToAddFaq()">Ajouter une faq</ion-button>
   <ion-list>
-    <ion-button *ngFor="let faq of allFaq" (click)="goToResultFaq(faq)">{{faq}}</ion-button>
+    <ion-button *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
   </ion-list>
   <div id="container">
     <strong class="capitalize">Hey Vote</strong>

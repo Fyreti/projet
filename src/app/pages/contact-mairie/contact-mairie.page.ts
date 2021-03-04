@@ -43,7 +43,7 @@ export class ContactMairiePage implements OnInit {
           this.allMessage = allMessage;
         }); 
         this.messageService.resetNotifUser(this.userApp);
-        firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email)
+        firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email).collection('message')
           .onSnapshot((querySnapshot) => {
             if (this.router.url === '/contact-mairie'){
               this.messageService.resetNotifUser(this.userApp);

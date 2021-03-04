@@ -28,7 +28,7 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button (click)="goToAddVote(vote)">Ajouter un vote</ion-button>
+  <ion-button (click)="goToAddVote()">Ajouter un vote</ion-button>
   <ion-list>
     <ion-button *ngFor="let vote of allVote" (click)="goToResultVote(vote)">{{vote}}</ion-button>
   </ion-list>

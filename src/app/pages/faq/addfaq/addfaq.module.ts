@@ -4,10 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AddfaqPageRoutingModule } from './addfaq-routing.module';
 
 import { AddfaqPage } from './addfaq.page';
 import { UserApp } from 'src/app/model/user.model';
+import { AddfaqPageRoutingModule } from './addfaq-routing.module';
 
 @NgModule({
   imports: [

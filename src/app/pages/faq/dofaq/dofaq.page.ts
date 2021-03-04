@@ -1,12 +1,13 @@
 import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserApp } from 'src/app/model/user.model';
 import { MessageService } from 'src/app/services/message.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 import { VoteService } from 'src/app/services/vote.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageFaq } from 'src/app/model/messagefaq.model';
 
 @Component({
   selector: 'app-dofaq',
@@ -14,61 +15,88 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./dofaq.page.scss'],
 })
 export class DofaqPage implements OnInit {
-  addfaqForm: FormGroup;
-  public variabletemps:string;
-  public allReponse : Array<string> = [];
-  private vote: string;
-  public voteOrNot : Array<number>;
+  @ViewChild('content') private content:any;
+  public allMessage: Array<MessageFaq> = [];
+  sendMessageForm: FormGroup;
+  errorMessage: string;
+  public allUser: Array<string> = [];
+  public faq: string;
+  public refresh: boolean;
 
   constructor(public userApp: UserApp, 
+    private dataService: DataService, 
     private formBuilder: FormBuilder,
-    private dataService: DataService,
-    private voteservice: VoteService,
-    private route: ActivatedRoute
-    ) { }
+    private router: Router, 
+    private messageService: MessageService,
+    private route: ActivatedRoute ) { 
+    console.log(userApp.role);
+  }
+
+
+  scrollToBottom() {
+    setTimeout(() => {
+        this.content.scrollToBottom();
+    });
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.vote = params['vote']; 
+      this.faq = params['faq']; 
     });
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
-      this.voteservice.getAllReponse(this.userApp, this.vote).then(allReponse => {
-        this.allReponse = allReponse;
-        this.voteservice.whichvote(this.userApp, this.vote, this.allReponse).then( voteOrNot => {
-          this.voteOrNot = voteOrNot;
-          console.log(">"+voteOrNot);
-        });
-      });
+      if (this.userApp.role.toUpperCase()=='MAIRIE'){
+        this.scrollToBottom();
+        this.messageService.receiveMessagefaq(this.userApp, this.faq).then((allMessage) => {
+          this.allMessage = allMessage;
+        }); 
+      }
+      
       }, (raison) => {
       console.log(raison); // Erreur !
-    });
+    });//set the object userApp with all info of the user who is connected
+    this.initForm();
 
-    
-    console.log(this.allReponse);
-  }
-
-  voteIt(reponse: string){
-    this.voteservice.voteIt(this.userApp, this.vote, reponse).then(() => {
-      this.voteservice.whichvote(this.userApp, this.vote, this.allReponse).then( voteOrNot => {
-        this.voteOrNot = voteOrNot;
-        console.log(">"+voteOrNot);
-      });
-    });
-  }
-
-  getColor(index: number) {
-    try {
-      if(this.voteOrNot[index] === 1){
-        return 'success';
+    firebase.default.firestore().collection('ville').doc('Paris').collection('faq').doc(this.faq).collection('message')
+    .onSnapshot((querySnapshot) => {
+      if (decodeURIComponent(this.router.url) === '/dofaq/'+this.faq){
+        
+        this.messageService.receiveMessagefaq(this.userApp, this.faq).then((allMessage) => {
+          this.allMessage = allMessage;
+          this.scrollToBottom();
+        });
       }
-      else{
-        return 'danger';
-      }
-    } catch (error) {
       
-    }
-    
-}
+  });
+      
+  }
 
+  initForm(){
+    this.sendMessageForm = this.formBuilder.group( 
+      {
+        message: ['', [Validators.required]]
+      }
+    )
+  }
+
+  onSubmit(){
+    console.log('coucou');
+    const message = this.sendMessageForm.get('message').value;
+    console.log(message);
+    this.messageService.sendMessageFaq(message, this.userApp, this.faq);
+    /*this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+      this.allMessage = allMessage;
+    }); */
+    this.sendMessageForm.reset();
+  }
+
+  // messageRefresh(){
+  //   this.messageService.receiveMairieMessage(this.userApp, this.email).then((allMessage) => {
+  //     this.allMessage = allMessage;
+  //   });
+  //   console.log("coucou")
+  //   setTimeout( function() {}, 3000);
+  // }
+
+  
 }

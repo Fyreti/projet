@@ -3,22 +3,48 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Vote</ion-title>
+    <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
+    <ion-title id="Title">Message Mairie</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content #content padding class="chatPage" *ngIf="(userApp.role | uppercase)==='MAIRIE' || (userApp.role | uppercase)==='VALID'"[fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    <ion-button *ngFor="let reponse of allReponse; let index = index" [color]=getColor(index) (click)="voteIt(reponse)">{{index}}{{reponse}}</ion-button>
+  <ion-list no-lines>
+    <ion-item *ngFor="let message of allMessage">
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+      <ion-label  *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
+    </ion-item>
+    
   </ion-list>
+  <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
+    <ion-item color="primary">
+      <ion-label>Message</ion-label>
+      <ion-input type="text" formControlName="message"></ion-input>
+      <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+    </ion-item>
+  </form>
   <div id="container">
-    <strong class="capitalize">Vote </strong>
+  </div>
+</ion-content>
+
+
+
+<ion-content *ngIf="userApp.role==='notValid'"[fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong class="capitalize">Your account is not valid </strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <h2>Send Message</h2>
     
   </div>
 </ion-content>
