@@ -14,6 +14,8 @@ import { EventService } from 'src/app/services/event.service';
 export class EventPage implements OnInit {
 
   allEvent: Array<Event> = [];
+  currentDate : Date;
+  formattedDate : string;
 
   constructor(public eventService: EventService,
               public userApp: UserApp,
@@ -29,6 +31,7 @@ export class EventPage implements OnInit {
     }, (raison) => {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
+    this.currentDate = new Date();
   }
 
   goToEventForm() {
@@ -38,6 +41,33 @@ export class EventPage implements OnInit {
 
   deleteEvent(dateDebut: Date, eventName: string){
     this.eventService.deleteEvent(this.userApp, dateDebut, eventName);
+  }
+
+  // formatDate(currentDate : Date){
+  //   let year = currentDate.getFullYear();
+  //   let month = currentDate.getMonth();
+  //   let day = currentDate.getDate();
+
+  //   this.formattedDate = year + '-' + month + '-' + day;
+  //   return Date.parse(this.formattedDate);
+  // }
+
+  // formatDate(currentDate: Date) {
+  //   var d = new Date(currentDate),
+  //       month = '' + (d.getMonth() + 1),
+  //       day = '' + d.getDate(),
+  //       year = d.getFullYear();
+
+  //   if (month.length < 2) 
+  //       month = '0' + month;
+  //   if (day.length < 2) 
+  //       day = '0' + day;
+
+  //   return [year, month, day].join('-');
+  // }
+
+  displayEvent(event : Event){
+    return Date.parse(event.dateFin.toString()).valueOf() >= Date.parse(this.currentDate.toDateString()).valueOf();
   }
 
 }

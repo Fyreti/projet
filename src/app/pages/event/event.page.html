@@ -24,7 +24,7 @@
   </ion-header>
   
   <ion-card *ngFor= "let event of allEvent">
-    <ion-row id='mobile_version'>
+    <ion-row id='mobile_version' *ngIf="(userApp.role | uppercase)==='MAIRIE'">
 
       <ion-col id='img_col'>
         <img class='img' src="{{event.photo}}" alt="Une possible photo" />
@@ -42,6 +42,36 @@
         </ion-card-content>
         <ion-card-content>
           Date de fin : {{event.dateFin}}
+        </ion-card-content>
+        <ion-card-content>
+          Current date : {{currentDate.getDate()}}
+        </ion-card-content>
+        <ion-button  *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row id='mobile_version' *ngIf="displayEvent(event) && ((userApp.role | uppercase)!=='MAIRIE')">
+
+      <ion-col id='img_col'>
+        <img class='img' src="{{event.photo}}" alt="Une possible photo" />
+      </ion-col>
+
+      <ion-col>
+        <ion-card-header>
+          <ion-card-title>{{event.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{event.information}}
+        </ion-card-content>
+        <ion-card-content>
+          Date de début : {{event.dateDebut}}
+        </ion-card-content>
+        <ion-card-content>
+          Date de fin : {{event.dateFin}}
+        </ion-card-content>
+        <ion-card-content>
+          Current date : {{currentDate.getDate()}}
         </ion-card-content>
         <ion-button  *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
       </ion-col>
