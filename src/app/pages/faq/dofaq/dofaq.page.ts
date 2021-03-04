@@ -17,6 +17,7 @@ import { MessageFaq } from 'src/app/model/messagefaq.model';
 export class DofaqPage implements OnInit {
   @ViewChild('content') private content:any;
   public allMessage: Array<MessageFaq> = [];
+  public testmail: string;
   sendMessageForm: FormGroup;
   errorMessage: string;
   public allUser: Array<string> = [];

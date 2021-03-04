@@ -8,7 +8,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content #content padding class="chatPage" *ngIf="(userApp.role | uppercase)==='MAIRIE' || (userApp.role | uppercase)==='VALID'"[fullscreen]="true">
+<ion-content #content padding class="chatPage" *ngIf=" (userApp.role | uppercase)==='VALID'"[fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list no-lines>
+    <ion-item *ngFor="let message of allMessage">
+      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">Mairie : {{message.message}}</ion-label>
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</ion-label>
+      <ion-label *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</ion-label>
+    </ion-item>
+    
+  </ion-list>
+  <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
+    <ion-item color="primary">
+      <ion-label>Message</ion-label>
+      <ion-input type="text" formControlName="message"></ion-input>
+      <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+    </ion-item>
+  </form>
+  <div id="container">
+  </div>
+</ion-content>
+
+<ion-content #content padding class="chatPage" *ngIf="(userApp.role | uppercase)==='MAIRIE'"[fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
@@ -17,7 +42,7 @@
   <ion-list no-lines>
     <ion-item *ngFor="let message of allMessage">
       <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
-      <ion-label  *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
+      <ion-label *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
     </ion-item>
     
   </ion-list>
