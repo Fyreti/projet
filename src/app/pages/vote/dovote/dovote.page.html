@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <ion-button *ngFor="let reponse of allReponse; let index = index" [color]=getColor(index) (click)="voteIt(reponse)">{{index}}{{reponse}}</ion-button>
+    <ion-button id="buttonvote" *ngFor="let reponse of allReponse; let index = index" [color]=getColor(index) (click)="voteIt(reponse)">{{index}}{{reponse}}</ion-button>
   </ion-list>
   <div id="container">
     <strong class="capitalize">Vote </strong>
