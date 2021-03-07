@@ -4,7 +4,8 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>SoundCity</ion-list-header>
+          <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
+        
           <ion-note>Profile : {{ userApp.email }}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
