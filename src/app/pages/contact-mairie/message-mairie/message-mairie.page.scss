@@ -28,7 +28,18 @@ ion-menu-button {
   }
 
   #right{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: right;
+    color:peru;
+    font-style: italic;
+    font-weight: bolder;
+  }
+
+  #left{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:lightblue;
+    font-style:italic;
+    font-weight: bolder;
   }
 
   #input{
@@ -48,3 +59,5 @@ ion-menu-button {
     font-size:x-large;
     margin:10px;
   }
+
+
