@@ -15,32 +15,50 @@ ion-menu-button {
     font-size: 20px;
     line-height: 26px;
   }
+
+.main{
   
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
+}
+
+.list_message{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  padding: 8px;
+  overflow: auto;
+}
   
-  #container a {
-    text-decoration: none;
+.list_message p{
+  font-family: Candara;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 2px 8px 2px 0;
+  min-width: 20% !important;
+  max-width: 80% !important;
+}
+
+.left{
+  background: #eee;
+}
+
+.right{
+  background: #deeeff;
+  position:absolute;
+  right:0 ;
+}
+
+
+.item_message{
+  height:fit-content;
+}
+
+  #input{  
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 
-  #right{
-    text-align: right;
-  }
-
-  #input{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  }
-
-  ion-list{
-    margin-bottom: 40px;
-  }
 
   button {
     ion-badge {

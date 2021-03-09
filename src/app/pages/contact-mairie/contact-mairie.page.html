@@ -19,37 +19,36 @@
       <ion-badge *ngIf="emailUser.value!==0" color="danger">{{emailUser.value}}</ion-badge>
     </ion-button>
   </ion-list>
-  <div id="container">
-    <strong class="capitalize"> Page mairie </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  
 </ion-content>
 
 
-
-<ion-content #content *ngIf="(userApp.role | uppercase)==='VALID'"[fullscreen]="true">
+<div class='main'>
+<ion-content id='general' #content *ngIf="(userApp.role | uppercase)==='VALID'"[fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    <ion-item *ngFor="let message of allMessage">
-      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
+  <ion-list lines="none" class='list_message'>
+    <ion-item class='item_message' *ngFor="let message of allMessage">
+
+      <p class='left' *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <p class="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
+
     </ion-item>
   </ion-list>
+
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
       <ion-label>Message</ion-label>
       <ion-input type="text" formControlName="message"></ion-input>
       <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
-    
   </form>
-  <div id="container">
-  </div>
+  
 </ion-content>
+</div>
 
 
 
@@ -62,7 +61,6 @@
 
   <div id="container">
     <strong class="capitalize">Your account is not valid </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
     <h2>Send Message</h2>
     
   </div>
