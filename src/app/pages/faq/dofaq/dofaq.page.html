@@ -3,8 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
-    <ion-title id="Title">Message Mairie</ion-title>
+    <ion-title class='font'>Forum</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -22,6 +21,8 @@
     </ion-item>
     
   </ion-list>
+
+  
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
       <ion-label>Message</ion-label>

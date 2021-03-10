@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class='title_page'>FAQ</ion-title>
+    <ion-title class='title_page'>Forum</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,10 +16,6 @@
   <ion-list>
     <ion-button *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
   </ion-list>
-  <div id="container">
-    <strong class="capitalize">Hey Vote</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>
 
 <ion-content *ngIf="(userApp.role|uppercase) === 'MAIRIE'" [fullscreen]="true">
@@ -28,12 +24,9 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button (click)="goToAddFaq()">Ajouter une faq</ion-button>
+  <ion-button class='font' (click)="goToAddFaq()">Ajouter un forum</ion-button>
   <ion-list>
-    <ion-button *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
+    <ion-button class='font' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
   </ion-list>
-  <div id="container">
-    <strong class="capitalize">Hey Vote</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+ 
 </ion-content>

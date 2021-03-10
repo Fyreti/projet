@@ -6,13 +6,13 @@
         <ion-list id="inbox-list">
           <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
         
-          <ion-note>Profile : {{ userApp.email }}</ion-note>
+          <ion-note class='font'>Profil : {{ userApp.email }}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i; onSignOut([p.title])" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label *ngIf="p.title !== 'Contacter votre mairie'">{{ p.title }}</ion-label>
-              <ion-label *ngIf="p.title === 'Contacter votre mairie'">{{ p.title }}
+              <ion-label class='font' *ngIf="p.title !== 'Contacter votre mairie'">{{ p.title }}</ion-label>
+              <ion-label class='font' *ngIf="p.title === 'Contacter votre mairie'">{{ p.title }}
                 <ion-badge *ngIf="notif!==0" color="danger">{{notif}}</ion-badge>
               </ion-label>
               

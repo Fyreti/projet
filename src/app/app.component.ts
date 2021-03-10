@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Information de la ville',
+      title: 'Informations',
       url: '/info-city',
       icon: 'information-circle'
     },
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       icon: 'mail-open'
     },
     {
-      title: 'FAQ',
+      title: 'Forum',
       url: '/faq',
       icon: 'help-circle'
     },
@@ -51,17 +51,17 @@ export class AppComponent implements OnInit {
       icon: 'calendar'
     },
     {
-      title: 'Contactez nous',
+      title: 'Contactez SondCity',
       url: '/contact-us',
       icon: 'chatbubble-ellipses'
     },
     {
-      title: 'Profile',
+      title: 'Profil',
       url: '/profile',
       icon: 'accessibility'
     },
     {
-      title: 'Deconnexion',
+      title: 'Déconnexion',
       url: '/auth',
       icon: 'power'
     }

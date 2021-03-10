@@ -5,8 +5,8 @@ ion-menu-button {
   #container {
     text-align: center;
     position: absolute;
-    left: 0;
-    right: 0;
+    left: 20%;
+    right: 20%;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -25,4 +25,8 @@ ion-menu-button {
   
   #container a {
     text-decoration: none;
+  }
+
+  .font{
+    font-family: Candara;
   }
