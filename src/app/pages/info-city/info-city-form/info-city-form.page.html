@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Info Ville</ion-title>
+    <ion-title class='font'>Ajouter une Infocity</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,22 +15,26 @@
   </ion-header>
 
   <div id="container">
-    <h2>Ajout d'une information sur la ville</h2>
+    <h2>Ajout d'une information sur votre ville</h2>
+    <br><br>
 
     <form [formGroup]="infoCityForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label>Nom</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
+        <ion-input placeholder='Nom' class='font' type="text" formControlName="name"></ion-input>
       </ion-item>
+
+      <br><br>
       <ion-item>
-        <ion-label>Information</ion-label>
-        <ion-input type="text" formControlName="information"></ion-input>
+        <ion-textarea placeholder='Information' cols="80" rows="8" class='font' type="text" formControlName="information"></ion-textarea>
       </ion-item>
+
+      <br><br>
       <ion-item>
-        <ion-label>Photo</ion-label>
-        <ion-input type="text" formControlName="photo"></ion-input>
+        <ion-input placeholder='Photo' class='font' type="text" formControlName="photo"></ion-input>
       </ion-item>
-      <ion-button type="submit" [disabled]="infoCityForm.invalid" block>Ajouter une information de ville</ion-button>
+
+      <br><br>
+      <ion-button class='font' type="submit" [disabled]="infoCityForm.invalid" block>Ajouter</ion-button>
     </form>
   </div>
 </ion-content>
