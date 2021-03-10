@@ -13,22 +13,24 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list no-lines>
-    <ion-item *ngFor="let message of allMessage">
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
-      <ion-label id="left" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
-    </ion-item>
-    
+  <ion-list lines="none" class='list_message'>
+    <div id='item_message' *ngFor="let message of allMessage">
+      
+      <p class='left' *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <p class="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
+
+    </div>
   </ion-list>
+
+
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
-      <ion-label>Message</ion-label>
-      <ion-input type="text" formControlName="message"></ion-input>
-      <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+      <ion-label class='font' >Message</ion-label>
+      <ion-input class='font' type="text" formControlName="message"></ion-input>
+      <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
   </form>
-  <div id="container">
-  </div>
+  
 </ion-content>
 
 
@@ -42,7 +44,6 @@
 
   <div id="container">
     <strong class="capitalize">Your account is not valid </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
     <h2>Send Message</h2>
     
   </div>

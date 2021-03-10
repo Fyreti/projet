@@ -1,63 +1,115 @@
 ion-menu-button {
-    color: var(--ion-color-primary);
-  }
-  
-  #container {
-    text-align: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
+  color: var(--ion-color-primary);
+}
 
-  #right{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-align: right;
-    color:peru;
-    font-style: italic;
-    font-weight: bolder;
-  }
+.font{
+  font-family: Candara;
+}
 
-  #left{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:lightblue;
-    font-style:italic;
-    font-weight: bolder;
-  }
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-  #input{
-    position: fixed;
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+
+.list_message{
+display: flex;
+flex-direction: column;
+margin-bottom: 50px;
+padding: 8px;
+overflow: auto;
+}
+
+#item_message{
+display: flex;
+margin: 1px;
+
+/*background: white;*/
+}
+
+
+#item_message p{
+font-family: Candara;
+border-radius: 8px;
+padding: 8px;
+margin: 2px 8px 2px 0;
+min-width: 10% !important;
+max-width: 80% !important;
+
+/*color: black;
+background: #eee;*/
+}
+
+#item_message .right{
+margin-left: auto;
+
+/*background: cyan;
+color: white;*/
+}
+
+.left{
+background: #eee;
+}
+
+.right{
+background: #deeeff;
+}
+
+
+/*
+@supports(mix-blend-mode: screen) {
+.list_message:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(rgb(255, 143, 178) 0%, rgb(167, 151, 255) 50%, rgb(0, 229, 255) 100%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+#item_message .right {    
+  background: black;
+}
+}
+*/
+
+
+#input{  
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  }
+}
 
-  ion-list{
-    margin-bottom: 40px;
-  }
 
-  .title_page{
-    font-family: Candara;
-    font-weight: bold;
-    font-size:x-large;
-    margin:10px;
-  }
+button {
+  ion-badge {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.2rem;
+    opacity: 0.9;
 
+    & ~ ion-icon {
+      margin-right: 1.2rem;
+    }
+  }
+}
+
+.title_page{
+  font-family: Candara;
+  font-weight: bold;
+  font-size:x-large;
+  margin:10px;
+}
 
