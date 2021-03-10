@@ -1,6 +1,10 @@
 ion-menu-button {
     color: var(--ion-color-primary);
   }
+
+.font{
+    font-family: Candara;
+}
   
   #container {
     text-align: center;
@@ -17,7 +21,7 @@ ion-menu-button {
   }
 
 .main{
-  
+  display: flex;
 }
 
 .list_message{
@@ -27,14 +31,24 @@ ion-menu-button {
   padding: 8px;
   overflow: auto;
 }
+
+#item_message{
+  display: flex;
+  margin: 1px;
+}
+
   
-.list_message p{
+#item_message p{
   font-family: Candara;
   border-radius: 8px;
   padding: 8px;
   margin: 2px 8px 2px 0;
-  min-width: 20% !important;
+  min-width: 10% !important;
   max-width: 80% !important;
+}
+
+#item_message .right{
+  margin-left: auto;
 }
 
 .left{
@@ -43,14 +57,9 @@ ion-menu-button {
 
 .right{
   background: #deeeff;
-  position:absolute;
-  right:0 ;
 }
 
 
-.item_message{
-  height:fit-content;
-}
 
   #input{  
     position: fixed;
