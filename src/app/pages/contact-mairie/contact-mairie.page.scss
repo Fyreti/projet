@@ -20,9 +20,6 @@ ion-menu-button {
     line-height: 26px;
   }
 
-.main{
-  display: flex;
-}
 
 .list_message{
   display: flex;
@@ -35,6 +32,8 @@ ion-menu-button {
 #item_message{
   display: flex;
   margin: 1px;
+
+  /*background: white;*/
 }
 
   
@@ -45,10 +44,16 @@ ion-menu-button {
   margin: 2px 8px 2px 0;
   min-width: 10% !important;
   max-width: 80% !important;
+
+  /*color: black;
+  background: #eee;*/
 }
 
 #item_message .right{
   margin-left: auto;
+
+  /*background: cyan;
+  color: white;*/
 }
 
 .left{
@@ -59,6 +64,25 @@ ion-menu-button {
   background: #deeeff;
 }
 
+
+/*
+@supports(mix-blend-mode: screen) {
+  .list_message:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgb(255, 143, 178) 0%, rgb(167, 151, 255) 50%, rgb(0, 229, 255) 100%);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  #item_message .right {    
+    background: black;
+  }
+}
+*/
 
 
   #input{  
