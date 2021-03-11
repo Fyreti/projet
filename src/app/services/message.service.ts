@@ -312,7 +312,8 @@ export class MessageService {
           if (userApp.role.toUpperCase() === "MAIRIE"){
             firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
               message_mairie: message,
-              email: userApp.email
+              email: userApp.email,
+              username: userApp.username
             });
           }
           else if (userApp.role.toUpperCase() === "VALID"){
