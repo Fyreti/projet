@@ -279,12 +279,12 @@ export class MessageService {
             // doc.data() is never undefined for query doc snapshots
             if (doc.get('message_user')){
               this.messageFaq = new MessageFaq();
-              this.messageFaq.setMessage("User", doc.get('message_user'), doc.get('email'));
+              this.messageFaq.setMessage("User", doc.get('message_user'), doc.get('email'), doc.get('username'));
               this.allMessageFaq.push(this.messageFaq);
             }
             else{
               this.messageFaq = new MessageFaq();
-              this.messageFaq.setMessage("Mairie", doc.get('message_mairie'), doc.get('email'));
+              this.messageFaq.setMessage("Mairie", doc.get('message_mairie'), doc.get('email'), doc.get('username'));
               this.allMessageFaq.push(this.messageFaq);
             }
             
@@ -318,7 +318,8 @@ export class MessageService {
           else if (userApp.role.toUpperCase() === "VALID"){
             firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
               message_user: message,
-              email: userApp.email
+              email: userApp.email,
+              username: userApp.username
             });
           }
         }

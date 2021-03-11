@@ -15,8 +15,13 @@
   </ion-header>
   <ion-list no-lines>
     <ion-item *ngFor="let message of allMessage">
-      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">Mairie : {{message.message}}</ion-label>
+      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</ion-label>
+      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.username}}</ion-label>
       <ion-label id="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</ion-label>
+
+      <ion-label *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</ion-label>
       <ion-label *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</ion-label>
     </ion-item>
     
@@ -42,7 +47,10 @@
   </ion-header>
   <ion-list no-lines>
     <ion-item *ngFor="let message of allMessage">
+      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</ion-label>
       <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+
+      <ion-label *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</ion-label>
       <ion-label *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
     </ion-item>
     

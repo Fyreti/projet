@@ -16,7 +16,7 @@ export class DataService {
                 if (doc.exists) {
                     console.log("Profil found:", doc.data());
                     
-                    userApp.setUser(doc.get('age'), doc.get('email'), doc.get('role'), doc.get('ville'));
+                    userApp.setUser(doc.get('age'), doc.get('email'), doc.get('role'), doc.get('ville'), doc.get('username'));
 
                     console.log(userApp.email);
                     console.log(userApp.age);
