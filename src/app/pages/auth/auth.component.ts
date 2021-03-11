@@ -43,7 +43,7 @@ export class AuthComponent implements OnInit {
       },
       (error) => {
         console.log("wrong password or email");
-        this.errorMessage = error;
+        this.errorMessage = "Identifiant ou mot de passe incorrect.";
       }
     );
   }

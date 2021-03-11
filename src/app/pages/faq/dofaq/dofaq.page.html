@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class='font'>Forum</ion-title>
+    <ion-title class='title_page'>Forum</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,17 +13,18 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list no-lines>
-    <ion-item *ngFor="let message of allMessage">
-      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</ion-label>
-      <ion-label *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
+  <ion-list lines="none" class='list_message'>
+    <div id='item_message' *ngFor="let message of allMessage">
+      <p class="topleft" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</p>
+      <p class="botleft" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <br>
 
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.username}}</ion-label>
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</ion-label>
+      <p class="topright" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.username}}</p>
+      <p class="botright" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</p>
 
-      <ion-label *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</ion-label>
-      <ion-label *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</ion-label>
-    </ion-item>
+      <p class="topleft" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</p>
+      <p class="botleft" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</p>
+    </div>
     
   </ion-list>
 
