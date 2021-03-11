@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
   initForm(){
     this.signUpForm = this.formBuilder.group( 
       {
+        username: ['', [Validators.required , Validators.pattern(/[0-9a-zA-Z]{3,}/)]],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
         ville: ['', Validators.required],
@@ -33,11 +34,12 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(){
+    const username = this.signUpForm.get('username').value;
     const email = this.signUpForm.get('email').value;
     const password = this.signUpForm.get('password').value;
     const ville = this.signUpForm.get('ville').value;
     const age = this.signUpForm.get('age').value;
-    this.authService.createNewUser(email, password, ville, age).then(
+    this.authService.createNewUser(email, password, ville, age, username).then(
       () => {
         this.router.navigate(['/info-city']);
       },

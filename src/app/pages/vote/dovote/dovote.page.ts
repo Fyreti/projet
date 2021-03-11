@@ -63,7 +63,7 @@ export class DovotePage implements OnInit {
         return 'success';
       }
       else{
-        return 'danger';
+        return 'dark';
       }
     } catch (error) {
       
