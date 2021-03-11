@@ -15,11 +15,11 @@
   </ion-header>
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
-      <p class="topleft" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</p>
+      <p class="topleftmairie" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</p>
       <p class="botleft" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
       <br>
 
-      <p class="topright" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.username}}</p>
+      
       <p class="botright" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</p>
 
       <p class="topleft" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</p>
@@ -31,9 +31,8 @@
   
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
-      <ion-label>Message</ion-label>
-      <ion-input type="text" formControlName="message"></ion-input>
-      <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+      <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
+      <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
   </form>
   <div id="container">
@@ -46,25 +45,25 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list no-lines>
-    <ion-item *ngFor="let message of allMessage">
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</ion-label>
-      <ion-label id="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</ion-label>
 
-      <ion-label *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</ion-label>
-      <ion-label *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</ion-label>
-    </ion-item>
+  <ion-list lines="none" class='list_message'>
+    <div id='item_message' *ngFor="let message of allMessage">
+      <p class="botright" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <br>
+
+      <p class="topleft" *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</p>
+      <p class="botleft" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
+    </div>
     
   </ion-list>
+
+
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
-      <ion-label>Message</ion-label>
-      <ion-input type="text" formControlName="message"></ion-input>
-      <ion-button color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
+      <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
+      <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
   </form>
-  <div id="container">
-  </div>
 </ion-content>
 
 

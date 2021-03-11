@@ -27,6 +27,10 @@ ion-menu-button {
   text-decoration: none;
 }
 
+.font{
+  font-family: Candara;
+}
+
 #right{
   text-align: right;
 }
@@ -76,7 +80,6 @@ ion-list{
 #item_message{
   display: flex;
   margin: 1px;
-  
   }
 
 #item_message p{
@@ -110,11 +113,19 @@ ion-list{
     font-weight: bold;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    background: rgb(9, 172, 71);
+    background: #cffed1;
     }
+
+  .topleftmairie{
+    font-family: Candara;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: #ffcdcd;
+    }
+
   
   .botright{
-    
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     background: #eee;
