@@ -7,16 +7,15 @@
   <div id="container">
     <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
     <h2 id="connexion" >Bienvenue sur SondCity !</h2>
+    <div>{{ errorMessage }}</div>
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
 
       <ion-item>
-        <ion-label class='ion_label' >Mail</ion-label>
-        <ion-input class='ion_label' type="text" formControlName="email"></ion-input>
+        <ion-input placeholder="Mail" class='ion_label' type="text" formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label class='ion_label' >Mot de passe</ion-label>
-        <ion-input class='ion_label' type="password" formControlName="password"></ion-input>
+        <ion-input placeholder='Mot de passe' class='ion_label' type="password" formControlName="password"></ion-input>
       </ion-item>
 
       <ion-button class='ion_label' type="submit" [disabled]="signInForm.invalid" block>Connexion</ion-button>
