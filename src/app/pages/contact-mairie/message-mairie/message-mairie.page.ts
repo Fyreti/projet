@@ -57,7 +57,6 @@ export class MessageMairiePage implements OnInit {
     });//set the object userApp with all info of the user who is connected
     this.initForm();
 
-<<<<<<< Updated upstream
     firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.email).collection('message')
     .onSnapshot((querySnapshot) => {
       if (this.router.url === '/message-mairie/'+this.email){
@@ -71,13 +70,6 @@ export class MessageMairiePage implements OnInit {
       }
       
   });
-=======
-    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc('fdp@gmail.com').collection('message').doc()
-    .onSnapshot(function(querySnapshot) {
-        
-        console.log("Current cities in CA: ");
-    });
->>>>>>> Stashed changes
       
   }
 
