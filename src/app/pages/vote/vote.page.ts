@@ -23,13 +23,17 @@ private allVote : Array<string> = [];
   ngOnInit() {
     var user = firebase.default.auth().currentUser; //Get the user who is connected
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
+<<<<<<< Updated upstream
       this.voteservice.getAllVote(this.userApp).then( allVote => {
         this.allVote = allVote;
       });
+=======
+>>>>>>> Stashed changes
       }, (raison) => {
       console.log(raison); // Erreur !
     });
 
+<<<<<<< Updated upstream
   }
 
   goToVote(vote:string) {
@@ -45,5 +49,15 @@ private allVote : Array<string> = [];
   goToResultVote(vote: string){
     console.log("redirectionn");
     this.router.navigate(['/resultvote', vote]);
+=======
+    this.voteservice.getAllVote(this.userApp).then( allVote => {
+      this.allVote = allVote;
+    });
+  }
+
+  goToVote(vote:string) {
+    console.log("redirectionn");
+    this.router.navigate(['/dovote', vote]);
+>>>>>>> Stashed changes
   }
 }

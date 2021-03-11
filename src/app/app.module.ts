@@ -22,11 +22,16 @@ import { MessageService } from './services/message.service';
 import { DatePipe } from '@angular/common';
 import { MessageApp } from './model/message.model';
 import { AuthGuardMairie } from './services/auth-guard-mairie';
+<<<<<<< Updated upstream
 import { InfoCityService } from './services/info-city.service';
 import { VoteService } from './services/vote.service';
 import { FaqService } from './services/faq.service';
 import { EventService } from './services/event.service';
 import { Event } from './model/event.model'
+=======
+import { VoteService } from './services/vote.service';
+
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,9 +57,12 @@ import { Event } from './model/event.model'
     DatePipe,
     MessageApp,
     VoteService,
+<<<<<<< Updated upstream
     FaqService,
     EventService,
     Event,
+=======
+>>>>>>> Stashed changes
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

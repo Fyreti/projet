@@ -74,6 +74,7 @@ export class ContactMairiePage implements OnInit {
       console.log(raison); // Erreur !
     });//set the object userApp with all info of the user who is connected
     this.initForm();
+<<<<<<< Updated upstream
     /*firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc('coucou@gmail.com').collection('message')
     .onSnapshot(function(querySnapshot) {
         
@@ -81,6 +82,13 @@ export class ContactMairiePage implements OnInit {
     });*/
     
     
+=======
+    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc('fdp@gmail.com').collection('message')
+    .onSnapshot(function(querySnapshot) {
+        
+        console.log("Current cities in CA: ");
+    });
+>>>>>>> Stashed changes
   }
 
   initForm(){
