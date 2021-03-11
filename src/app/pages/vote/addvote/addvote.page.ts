@@ -14,7 +14,9 @@ import { VoteService } from 'src/app/services/vote.service';
 })
 export class AddvotePage implements OnInit {
   addvoteForm: FormGroup;
+  addreponseForm: FormGroup;
   public variabletemps:string;
+  public verif: boolean = false;
   public allReponse : Array<string> = [];
   constructor(public userApp: UserApp, 
     private formBuilder: FormBuilder,
@@ -31,52 +33,62 @@ export class AddvotePage implements OnInit {
     });
 
     this.initForm();
+    this.initForm2();
+  }
+
+  initForm2(){
+    this.addreponseForm = this.formBuilder.group( 
+      {
+        reponse: ['', [Validators.required]]
+      }
+    )
   }
 
   initForm(){
     this.addvoteForm = this.formBuilder.group( 
       {
         titre: ['', [Validators.required]],
-        question: ['', [Validators.required]],
-        reponse: ['', [Validators.required]]
+        question: ['', [Validators.required]]
       }
     )
   }
 
+  verifValideForm(){
+    if(this.allReponse.length>0){
+      this.verif = true;
+    }
+    else{
+      this.verif = false;
+    }
+  }
+
+  supprimerReponse(rep: string){
+    this.allReponse.splice(this.allReponse.indexOf(rep),1)
+    this.verifValideForm();
+  }
+
+  onSubmit2(){
+    const reponse: string = this.addreponseForm.get('reponse').value;
+    this.allReponse.push(reponse);
+    console.log(this.allReponse);
+    this.verifValideForm();
+    this.addreponseForm.reset();
+  }
+
   onSubmit(){
-    
-    console.log('coucou');
     const titre : string = this.addvoteForm.get('titre').value;
     const question : string = this.addvoteForm.get('question').value;
-    const reponse : string = this.addvoteForm.get('reponse').value;
-    this.allReponse = [];
-    if (reponse.includes(',')){
-      this.variabletemps = "";
-      for ( let i = 0; i < reponse.length; i++){
-        if(reponse.charAt(i) !== ','){
-          this.variabletemps += reponse.charAt(i);
-        }
-        else if (reponse.charAt(i) === ','){
-          this.variabletemps = this.variabletemps.trim();
-          if (!this.allReponse.includes(this.variabletemps)){
-            this.allReponse.push(this.variabletemps);
-          }
-          this.variabletemps = "";
-        }
-        
-      }
-      this.variabletemps = this.variabletemps.trim();
-      if (!this.allReponse.includes(this.variabletemps)){
-        this.allReponse.push(this.variabletemps);
-      }
-      
-    }
+    
+    
 
     this.allReponse.forEach(element => {
       console.log(element);
     });
-
+    
     this.voteservice.addVote(titre, question, this.allReponse, this.userApp);
+
+    this.allReponse = [];
+    this.addvoteForm.reset();
 
   }
 

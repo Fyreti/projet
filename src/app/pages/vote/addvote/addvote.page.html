@@ -26,11 +26,22 @@
         <ion-label>Question</ion-label>
         <ion-input type="text" formControlName="question"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label>Réponse possible séparé chaque réponse par une virgule ex : (oui, non, blanc)</ion-label>
-        <ion-input type="text" formControlName="reponse"></ion-input>
-      </ion-item>
-      <ion-button type="submit" [disabled]="addvoteForm.invalid" block>Send</ion-button>
+      
+      <form [formGroup]="addreponseForm" (ngSubmit)="onSubmit2()">
+        <ion-item>
+          <ion-label>Réponse: </ion-label>
+          <ion-input type="text" formControlName="reponse"></ion-input>
+          <ion-button type="submit" [disabled]="addreponseForm.invalid" block>Send</ion-button>
+        </ion-item>
+      </form>
+      <ion-list *ngFor="let reponse of allReponse">
+        <ion-label>{{reponse}}</ion-label>
+        <ion-button (click)="supprimerReponse(reponse)">Supprimer</ion-button>
+      </ion-list>
+
+      <ion-button type="submit" [disabled]="addvoteForm.invalid || !verif" block>Ajouter Catégorie</ion-button>
     </form>
+    
+    
   </div>
 </ion-content>

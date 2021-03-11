@@ -13,6 +13,7 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-label>{{vote}}</ion-label>
   <ion-list>
     <ion-button id="buttonvote" *ngFor="let reponse of allReponse; let index = index" [color]=getColor(index) (click)="voteIt(reponse)">{{index}}{{reponse}}</ion-button>
   </ion-list>
