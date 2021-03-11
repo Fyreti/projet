@@ -20,7 +20,6 @@ export class MessageMairiePage implements OnInit {
   errorMessage: string;
   public allUser: Array<string> = [];
   public email: string;
-  public refresh: boolean;
 
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
@@ -74,6 +73,7 @@ export class MessageMairiePage implements OnInit {
   }
 
   initForm(){
+    
     this.sendMessageForm = this.formBuilder.group( 
       {
         message: ['', [Validators.required]]
