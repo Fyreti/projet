@@ -13,10 +13,10 @@ export class AuthService {
     createNewUser(email: string, password: string, ville: string, age: number, username:string){
       return new Promise(
         (resolve, reject) => {
-          firebase.default.auth().createUserWithEmailAndPassword(email, password).then(
+          firebase.default.auth().createUserWithEmailAndPassword(email.toLowerCase(), password).then(
             (user) => {
               if(user){
-                this.createUser(email, ville, age, username).then(
+                this.createUser(email.toLowerCase(), ville, age, username).then(
                 )
               }
               resolve(true);
