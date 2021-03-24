@@ -81,14 +81,7 @@ export class SignupComponent implements OnInit {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-    if(this.setCurrentPlatform() === "mobile")
-    {
-      setTimeout(() => this.FindCity(lat,long),1500);
-    }
-    else
-    {
-      setTimeout(() => this.FindCityDesktop(lat,long),100) ;
-    }
+    setTimeout(() => this.FindCityDesktop(lat,long),1500);
     
   }
 
