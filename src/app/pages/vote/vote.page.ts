@@ -30,7 +30,7 @@ private allVote : Array<string> = [];
       console.log(raison); // Erreur !
     });
 
-    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie')
+    firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
     .onSnapshot((querySnapshot) => {
       this.dataService.getOneUser(user.email, this.userApp).then(() => {
         this.voteservice.getAllVote(this.userApp).then( allVote => {
