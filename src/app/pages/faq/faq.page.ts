@@ -30,14 +30,9 @@ export class FAQPage implements OnInit {
     });
     firebase.default.firestore().collection('ville').doc('Paris').collection('faq')
     .onSnapshot((querySnapshot) => {
-      this.dataService.getOneUser(user.email, this.userApp).then(() => {
-        this.faqservice.getAllFaq(this.userApp).then( allFaq => {
-          this.allFaq = allFaq;
-        });
-        }, (raison) => {
-        console.log(raison); // Erreur !
+      this.faqservice.getAllFaq(this.userApp).then( allFaq => {
+        this.allFaq = allFaq;
       });
-      
     });
   }
 
