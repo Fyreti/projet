@@ -28,7 +28,17 @@ export class FAQPage implements OnInit {
       }, (raison) => {
       console.log(raison); // Erreur !
     });
-
+    firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie')
+    .onSnapshot((querySnapshot) => {
+      this.dataService.getOneUser(user.email, this.userApp).then(() => {
+        this.faqservice.getAllFaq(this.userApp).then( allFaq => {
+          this.allFaq = allFaq;
+        });
+        }, (raison) => {
+        console.log(raison); // Erreur !
+      });
+      
+    });
   }
 
   goToFaq(faq:string) {
