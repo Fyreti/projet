@@ -10,7 +10,6 @@
 
   <div id="container">
     <h2>Créer un compte</h2>
-
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-label>Username</ion-label>
@@ -26,13 +25,13 @@
       </ion-item>
       <ion-item>
         <ion-label>Ville</ion-label>
-        <ion-input type="text" formControlName="ville"></ion-input>
+        <ion-input type="text" disabled="true" formControlName="ville" value={{city}}></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Age</ion-label>
         <ion-input type="number" formControlName="age"></ion-input>
       </ion-item>
-      <ion-button type="submit" [disabled]="signUpForm.invalid" block>Ajouter un user</ion-button>
+      <ion-button type="submit" [disabled]="signUpForm.invalid" block>Confirmer</ion-button>
     </form>
     <p class="text-danger">{{ errorMessage }}</p>
   </div>

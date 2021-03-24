@@ -28,6 +28,10 @@ import { FaqService } from './services/faq.service';
 import { EventService } from './services/event.service';
 import { Event } from './model/event.model'
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { HttpClientModule } from '@angular/common/http'
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -36,7 +40,8 @@ import { Event } from './model/event.model'
  	  AngularFirestoreModule,
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
@@ -55,6 +60,8 @@ import { Event } from './model/event.model'
     FaqService,
     EventService,
     Event,
+    Geolocation,
+    NativeGeocoder,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
