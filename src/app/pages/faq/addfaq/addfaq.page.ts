@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/services/message.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 import { FaqService } from 'src/app/services/faq.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addfaq',
@@ -14,7 +15,8 @@ import { FaqService } from 'src/app/services/faq.service';
 })
 export class AddfaqPage implements OnInit {
   addfaqForm: FormGroup;
-  constructor(public userApp: UserApp, 
+  constructor(private router: Router, 
+    public userApp: UserApp, 
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private faqservice: FaqService
@@ -47,7 +49,7 @@ export class AddfaqPage implements OnInit {
     const question : string = this.addfaqForm.get('question').value;
 
     this.faqservice.addFaq(titre, question, this.userApp);
-
+    this.router.navigate(['/faq']);
   }
 
 }

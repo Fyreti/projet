@@ -89,7 +89,7 @@ export class DofaqPage implements OnInit {
       this.allMessage = allMessage;
     }); */
     this.sendMessageForm.reset();
-    this.router.navigate(['/faq']);
+    
   }
 
   // messageRefresh(){
