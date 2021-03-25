@@ -25,6 +25,12 @@ export class InfoCityPage implements OnInit {
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
         this.allInfo = allInfo;
+        firebase.default.firestore().collection('ville').doc('Paris').collection('info-city')
+        .onSnapshot((querySnapshot) => {
+          this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
+            this.allInfo = allInfo;
+          }); 
+        });
       }); 
     }, (raison) => {
       console.log(raison); // Erreur !
