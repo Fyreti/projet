@@ -25,22 +25,25 @@ private allVote : Array<string> = [];
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.voteservice.getAllVote(this.userApp).then( allVote => {
         this.allVote = allVote;
+
+        firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
+        .onSnapshot((querySnapshot) => {
+          this.dataService.getOneUser(user.email, this.userApp).then(() => {
+            this.voteservice.getAllVote(this.userApp).then( allVote => {
+              this.allVote = allVote;
+            });
+            }, (raison) => {
+            console.log(raison); // Erreur !
+          });
+          
+        });
+
       });
       }, (raison) => {
       console.log(raison); // Erreur !
     });
 
-    firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
-    .onSnapshot((querySnapshot) => {
-      this.dataService.getOneUser(user.email, this.userApp).then(() => {
-        this.voteservice.getAllVote(this.userApp).then( allVote => {
-          this.allVote = allVote;
-        });
-        }, (raison) => {
-        console.log(raison); // Erreur !
-      });
-      
-    });
+    
 
   }
 

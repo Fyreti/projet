@@ -37,6 +37,18 @@ export class ResultvotePage implements OnInit {
         this.allReponse = allReponse;
         this.voteservice.numberVote(this.userApp, this.vote, this.allReponse).then( allNumberOfVote => {
           this.allNumberOfVote = allNumberOfVote;
+
+          firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
+          .onSnapshot((querySnapshot) => {
+            this.voteservice.getAllReponse(this.userApp, this.vote).then(allReponse => {
+              this.allReponse = allReponse;
+              this.voteservice.numberVote(this.userApp, this.vote, this.allReponse).then( allNumberOfVote => {
+                this.allNumberOfVote = allNumberOfVote;
+              });
+            });
+            
+          });
+
         });
       });
       }, (raison) => {
@@ -46,16 +58,7 @@ export class ResultvotePage implements OnInit {
     
     console.log(this.allReponse);
 
-    firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
-    .onSnapshot((querySnapshot) => {
-      this.voteservice.getAllReponse(this.userApp, this.vote).then(allReponse => {
-        this.allReponse = allReponse;
-        this.voteservice.numberVote(this.userApp, this.vote, this.allReponse).then( allNumberOfVote => {
-          this.allNumberOfVote = allNumberOfVote;
-        });
-      });
-      
-    });
+    
   }
 
 }

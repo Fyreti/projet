@@ -29,9 +29,13 @@
       </ion-item>
 
       <br><br>
-      <ion-item>
-        <ion-input placeholder='Photo' class='font' type="text" formControlName="photo"></ion-input>
-      </ion-item>
+      
+      <img *ngIf="urlUploadFile!== ''" src="{{urlUploadFile}}"/><br>
+      <ion-progress-bar color="secondary" value="{{progress}}"></ion-progress-bar>
+      <label for="file">Choose File</label>
+      <input formControlName="file" type="file"
+            id="file"
+            (change)="handleFileInput($event.target.files)">
 
       <br><br>
       <ion-button class='font' type="submit" [disabled]="infoCityForm.invalid" block>Ajouter</ion-button>

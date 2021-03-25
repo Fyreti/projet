@@ -24,16 +24,19 @@ export class FAQPage implements OnInit {
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.faqservice.getAllFaq(this.userApp).then( allFaq => {
         this.allFaq = allFaq;
+
+        firebase.default.firestore().collection('ville').doc('Paris').collection('faq')
+        .onSnapshot((querySnapshot) => {
+          this.faqservice.getAllFaq(this.userApp).then( allFaq => {
+            this.allFaq = allFaq;
+          });
+        });
+
       });
       }, (raison) => {
       console.log(raison); // Erreur !
     });
-    firebase.default.firestore().collection('ville').doc('Paris').collection('faq')
-    .onSnapshot((querySnapshot) => {
-      this.faqservice.getAllFaq(this.userApp).then( allFaq => {
-        this.allFaq = allFaq;
-      });
-    });
+    
   }
 
   goToFaq(faq:string) {

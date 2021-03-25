@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/services/message.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 import { VoteService } from 'src/app/services/vote.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addvote',
@@ -18,7 +19,8 @@ export class AddvotePage implements OnInit {
   public variabletemps:string;
   public verif: boolean = false;
   public allReponse : Array<string> = [];
-  constructor(public userApp: UserApp, 
+  constructor(private router: Router, 
+    public userApp: UserApp, 
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private voteservice: VoteService
@@ -89,7 +91,7 @@ export class AddvotePage implements OnInit {
 
     this.allReponse = [];
     this.addvoteForm.reset();
-
+    this.router.navigate(['/vote']);
   }
 
 }
