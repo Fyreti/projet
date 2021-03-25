@@ -41,8 +41,7 @@
 
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
     <ion-item color="primary">
-      <ion-label class='font' >Message</ion-label>
-      <ion-input class='font' type="text" formControlName="message"></ion-input>
+      <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
       <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
   </form>

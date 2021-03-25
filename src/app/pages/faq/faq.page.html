@@ -17,7 +17,7 @@
 
 <ion-content *ngIf="(userApp.role|uppercase) === 'VALID'" [fullscreen]="true">
   
-  <ion-list>
+  <ion-list id="container">
     <div id="buttonvote">
       <ion-button class='font' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
     </div>
