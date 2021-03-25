@@ -15,9 +15,7 @@
   </ion-header>
 
   <div id="container">
-    <h2>Ajout d'une information sur votre ville</h2>
-    <br><br>
-
+    
     <form [formGroup]="infoCityForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-input placeholder='Nom' class='font' type="text" formControlName="name"></ion-input>
