@@ -14,10 +14,10 @@
     </ion-toolbar>
   </ion-header>
   <div id="together">
-    <div class="Firstcontainer">
+    <div class="container">
       <h4 id="VoteName" >{{vote}}</h4>
     </div>
-    <ion-list class="Firstcontainer">
+    <ion-list class="container">
       <div id="buttonvote">
         <ion-button class="font" *ngFor="let reponse of allReponse; let index = index" [color]=getColor(index) (click)="voteIt(reponse)"> {{reponse}}</ion-button>
       </div>

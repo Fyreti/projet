@@ -19,8 +19,10 @@ ion-menu-button {
   }
 
   #buttonvote{
+    max-width: fit-content;
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
 
   .font{
