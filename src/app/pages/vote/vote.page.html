@@ -10,14 +10,6 @@
 </ion-header>
 
 
-<ion-row>
-  <ion-col class='title_page' >Informations</ion-col>
-  <ion-col class='add_button'>
-    <ion-button (click)="goToAddVote()">Ajouter un vote</ion-button>
-  </ion-col>
-</ion-row>
-
-
 <ion-content *ngIf="(userApp.role|uppercase) === 'VALID'" [fullscreen]="true">
 
   <ion-list id="container">
