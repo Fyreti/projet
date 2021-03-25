@@ -3,7 +3,7 @@
     <ion-row>
       <ion-col class='title_page' >Forum</ion-col>
       <ion-col class='add_button'>
-        <ion-button class='font' (click)="goToAddFaq()">Ajouter un forum</ion-button>
+        <ion-button class='font' *ngIf="(userApp.role|uppercase) === 'MAIRIE'" (click)="goToAddFaq()">Ajouter un forum</ion-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>
