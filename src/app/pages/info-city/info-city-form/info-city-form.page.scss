@@ -1,6 +1,11 @@
 ion-menu-button {
     color: var(--ion-color-primary);
   }
+
+  ion-progress-bar{
+    --progress-background: #a5fe97;
+    --buffer-background : #ff7272;
+  }
   
   #container {
     text-align: center;
