@@ -6,7 +6,7 @@ import { MessageService } from 'src/app/services/message.service';
 import * as firebase from 'firebase';
 import { DataService } from 'src/app/services/data.service';
 import { VoteService } from 'src/app/services/vote.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-resultvote',
@@ -24,7 +24,8 @@ export class ResultvotePage implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private voteservice: VoteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class ResultvotePage implements OnInit {
         this.voteservice.numberVote(this.userApp, this.vote, this.allReponse).then( allNumberOfVote => {
           this.allNumberOfVote = allNumberOfVote;
 
-          firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
+          firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('vote')
           .onSnapshot((querySnapshot) => {
             this.voteservice.getAllReponse(this.userApp, this.vote).then(allReponse => {
               this.allReponse = allReponse;
@@ -59,6 +60,11 @@ export class ResultvotePage implements OnInit {
     console.log(this.allReponse);
 
     
+  }
+
+  deleteVote(){
+    this.voteservice.deleteVote(this.userApp, this.vote);
+    this.router.navigate(['/vote']);
   }
 
 }

@@ -8,6 +8,7 @@ import { DataService } from 'src/app/services/data.service';
 import { VoteService } from 'src/app/services/vote.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageFaq } from 'src/app/model/messagefaq.model';
+import { FaqService } from 'src/app/services/faq.service';
 
 @Component({
   selector: 'app-dofaq',
@@ -29,7 +30,8 @@ export class DofaqPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router, 
     private messageService: MessageService,
-    private route: ActivatedRoute ) { 
+    private route: ActivatedRoute,
+    private faqservice: FaqService ) { 
     console.log(userApp.role);
   }
 
@@ -58,7 +60,7 @@ export class DofaqPage implements OnInit {
     });//set the object userApp with all info of the user who is connected
     this.initForm();
 
-    firebase.default.firestore().collection('ville').doc('Paris').collection('faq').doc(this.faq).collection('message')
+    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('faq').doc(this.faq).collection('message')
     .onSnapshot((querySnapshot) => {
       if (decodeURIComponent(this.router.url) === '/dofaq/'+this.faq){
         
@@ -99,6 +101,9 @@ export class DofaqPage implements OnInit {
   //   console.log("coucou")
   //   setTimeout( function() {}, 3000);
   // }
-
+  deleteForum(){
+    this.faqservice.deleteForum(this.userApp, this.faq);
+    this.router.navigate(['/faq']);
+  }
   
 }

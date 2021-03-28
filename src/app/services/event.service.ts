@@ -54,27 +54,13 @@ export class EventService {
     }
 
     deleteEvent(userApp: UserApp, dateDebut: Date, eventName: string){
-        return new Promise<Array<Event>>(
-            (resolve, reject) => {
-                this.id = Date.parse(dateDebut.toString()).toString().concat(eventName);
-                console.log(this.id);
-                firebase.default.firestore().collection('ville').doc(userApp.ville).collection('event').doc(this.id).delete();
-                console.log('DELETED');
-                firebase.default.firestore().collection('ville').doc(userApp.ville).collection('event').get()
-                .then(snapshot => {
-                    this.allEvent = [];
-                    snapshot.forEach(doc => {
-                        this.event = new Event();
-                        this.event.setEvent(doc.get('name'), doc.get('information') , doc.get('photo'), doc.get('dateDebut'), doc.get('dateFin'));
-                        this.allEvent.push(this.event);  
-                    });
-                    resolve(this.allEvent);
-                })
-                .catch(function(error) {
-                    console.log("Error getting documents: ", error);
-                    reject();
-                });
-            }
-        );
+        if (userApp.role.toUpperCase() === "MAIRIE"){
+            this.id = Date.parse(dateDebut.toString()).toString().concat(eventName);
+            console.log(this.id);
+            
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('event').doc(this.id).delete();
+            console.log('DELETED');
+        }
+        
     }
 }

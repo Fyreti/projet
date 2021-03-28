@@ -25,7 +25,7 @@ export class FAQPage implements OnInit {
       this.faqservice.getAllFaq(this.userApp).then( allFaq => {
         this.allFaq = allFaq;
 
-        firebase.default.firestore().collection('ville').doc('Paris').collection('faq')
+        firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('faq')
         .onSnapshot((querySnapshot) => {
           this.faqservice.getAllFaq(this.userApp).then( allFaq => {
             this.allFaq = allFaq;

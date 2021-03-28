@@ -54,5 +54,10 @@ export class FaqService {
       )
   }
 
-
+  deleteForum(userApp : UserApp, forum : string){
+    if (userApp.role.toUpperCase() === "MAIRIE"){
+      firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(forum).delete();
+      console.log('faq DELETED');
+  }
+  }
 }

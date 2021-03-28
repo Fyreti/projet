@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-list>
-    <ion-button id="notification-button" *ngFor="let emailUser of allNotif | keyvalue" (click)="goToMessageMairie(emailUser.key)" >{{emailUser.key}}
+    <ion-button id="notification-button" *ngFor="let emailUser of allNotif | keyvalue: asIsOrder" (click)="goToMessageMairie(emailUser.key)" >{{emailUser.key}}
       <ion-icon name="chatbubbles-outline"></ion-icon>
       <ion-badge *ngIf="emailUser.value!==0" color="danger">{{emailUser.value}}</ion-badge>
     </ion-button>

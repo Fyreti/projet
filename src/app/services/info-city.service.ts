@@ -20,7 +20,7 @@ export class InfoCityService {
             firebase.default.firestore().collection('ville').doc(userApp.ville).set({
                 ville: userApp.ville
             });
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('info-city').doc().set({
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('info-city').doc(name+information).set({
                 name: name,
                 information: information,
                 photo: photo
@@ -48,5 +48,13 @@ export class InfoCityService {
                 });
             }
         );
+    }
+
+    deleteEvent(userApp: UserApp, name: string, information: string){
+        if (userApp.role.toUpperCase() === "MAIRIE"){
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('info-city').doc(name+information).delete();
+            console.log('info city DELETED');
+        }
+        
     }
 }

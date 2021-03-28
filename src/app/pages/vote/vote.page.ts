@@ -26,7 +26,7 @@ private allVote : Array<string> = [];
       this.voteservice.getAllVote(this.userApp).then( allVote => {
         this.allVote = allVote;
 
-        firebase.default.firestore().collection('ville').doc('Paris').collection('vote')
+        firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('vote')
         .onSnapshot((querySnapshot) => {
           this.dataService.getOneUser(user.email, this.userApp).then(() => {
             this.voteservice.getAllVote(this.userApp).then( allVote => {

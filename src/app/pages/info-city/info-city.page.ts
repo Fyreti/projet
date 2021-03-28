@@ -25,7 +25,7 @@ export class InfoCityPage implements OnInit {
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
         this.allInfo = allInfo;
-        firebase.default.firestore().collection('ville').doc('Paris').collection('info-city')
+        firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('info-city')
         .onSnapshot((querySnapshot) => {
           this.infoCityService.getInfoCity(this.userApp).then((allInfo) => {
             this.allInfo = allInfo;
@@ -40,6 +40,10 @@ export class InfoCityPage implements OnInit {
   goToInfoCityForm() {
     console.log("redirection");
     this.router.navigate(['/info-city-form']);
+  }
+
+  deleteEvent(name: string, information: string){
+    this.infoCityService.deleteEvent(this.userApp, name, information);
   }
 
 }

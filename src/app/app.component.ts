@@ -110,7 +110,7 @@ export class AppComponent implements OnInit {
                 that.messageService.getNotifUser(that.userApp).then(notif => {
                   that.notif = notif;
                 });
-                firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(that.userApp.email)
+                firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(that.userApp.email)
                 .onSnapshot((querySnapshot) => {
                   that.messageService.getNotifUser(that.userApp).then(notif => {
                     that.notif = notif;
@@ -136,7 +136,6 @@ export class AppComponent implements OnInit {
   }
 
   onSignOut(titleSelect : string) {
-    
     if (titleSelect == 'Déconnexion'){
       console.log("deconnexion");
       this.authService.signOutUser();

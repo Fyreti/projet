@@ -3,7 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Vote</ion-title>
+    <ion-row>
+      <ion-col class='title_page' >Vote</ion-col>
+      <ion-col class='add_button'>
+        <ion-button class='font' *ngIf="(userApp.role|uppercase) === 'MAIRIE'" (click)="deleteVote()">Supprimer</ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 

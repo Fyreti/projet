@@ -37,6 +37,7 @@
         <ion-card-content>
           {{info.information}}
         </ion-card-content>
+        <ion-button  *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(info.name,info.information)">Supprimer l'event</ion-button>
       </ion-col>
 
     </ion-row>

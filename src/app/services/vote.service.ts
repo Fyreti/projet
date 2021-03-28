@@ -151,7 +151,8 @@ export class VoteService {
         (resolve, reject) => {
             this.AllNumberOfVote = [];
             this.tot = 0;
-            allVote.forEach(reponse => {
+            if (allVote){
+              allVote.forEach(reponse => {
                 
                 firebase.default.firestore().collection('ville').doc(userApp.ville).collection('vote').doc(vote).collection(reponse).onSnapshot((querySnapshot) => {
                     this.verif = false;
@@ -169,12 +170,24 @@ export class VoteService {
                     reject(error);
                   }
                   
-        }
-      );
+            }
+            );
+            }
+            else{
+              resolve([0]);
+            }
+            
       
         }
         
     );
+  }
+
+  deleteVote(userApp : UserApp, vote : string){
+    if (userApp.role.toUpperCase() === "MAIRIE"){
+      firebase.default.firestore().collection('ville').doc(userApp.ville).collection('vote').doc(vote).delete();
+      console.log('vote DELETED');
+  }
   }
  
 }
