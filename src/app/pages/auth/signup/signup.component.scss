@@ -5,24 +5,71 @@ ion-menu-button {
   #container {
     text-align: center;
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 30%;
+    right: 30%;  
   }
-  
-  #container strong {
+
+  #container ion-label {
     font-size: 20px;
-    line-height: 26px;
+    color: #8c8c8c;
+    margin: 0px;
+  }
+   
+  ion-input, p{
+    font-size: 20px;
   }
   
-  #container p {
-    font-size: 16px;
+  #accueil_logo{
+    margin: 0px;
+    padding: 0px;
+    max-width: 50%;
+    max-height: 50%;
+  }
+
+  #ville{
+    --placeholder-color: red;
+  }
+
+  #age{
+    width:15%;
+    left: 42%;
+  }
+
+  .font{
+    font-family: Candara;
+  }
+
+
+  ion-button{
+    margin: 20px;
+  }
+  
+  
+  
+  @media (max-width: 1300px) and (max-width: 3000px) {
+  
+ 
+  #container {
+    text-align: center;
+    position: absolute;
+    left: 10%;
+    right: 10%;
+  }
+
+  ion-input, p{
+    font-size: 15px;
+  }
+
+  #container ion-label {
+    font-size: 15px;
     line-height: 22px;
     color: #8c8c8c;
-    margin: 0;
+    margin: 0px;
+  }
+
+  #age{
+    width:30%;
+    left: 35%;
   }
   
-  #container a {
-    text-decoration: none;
   }

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
    
-    <ion-title>Auth</ion-title>
+    <ion-title class='font'>S'inscrire</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,30 +9,30 @@
   
 
   <div id="container">
-    <h2>Créer un compte</h2>
+    <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
+    <p>Bienvenue sur SondCity ! <br> L'inscription ne vous prendra que quelques minutes. <br>
+      Afin de vérifier votre position, vous devez autoriser et activer la localisation. </p><br><br>
+
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <ion-item>
-        <ion-label>Username</ion-label>
-        <ion-input type="text" formControlName="username"></ion-input>
-      </ion-item>
+        <ion-input placeholder="Nom d'utilisateur" size="40" class='font' clearInput=true type="text" formControlName="username"></ion-input>
+      </ion-item><br>
       <ion-item>
-        <ion-label>Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
-      </ion-item>
+        <ion-input placeholder="Mail" class='font' clearInput=true inputmode="email" type="text" formControlName="email"></ion-input>
+      </ion-item><br>
       <ion-item>
-        <ion-label>Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
+        <ion-input placeholder="Mot de passe" class='font' clearInput=true type="password" formControlName="password"></ion-input>
+      </ion-item><br>
       <ion-item>
-        <ion-label>Ville</ion-label>
-        <ion-input type="text" disabled="true" formControlName="ville" value={{city}}></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Age</ion-label>
-        <ion-input type="number" formControlName="age"></ion-input>
-      </ion-item>
-      <ion-button type="submit" [disabled]="signUpForm.invalid" block>Confirmer</ion-button>
+        <ion-label class='font'>Ville</ion-label>
+        <ion-input id="ville" class='font' placeholder="Autorisez l'accès à votre localisation" type="text" disabled="true" formControlName="ville" value={{city}}></ion-input>
+      </ion-item><br>
+      <ion-item id="age" >
+        <ion-input placeholder="Age" class='font' inputmode="numeric" type="number" formControlName="age"></ion-input>
+      </ion-item><br>
+      <ion-button class='font' type="submit" [disabled]="signUpForm.invalid" block>Confirmer</ion-button>
     </form>
+
     <p class="text-danger">{{ errorMessage }}</p>
   </div>
 </ion-content>
