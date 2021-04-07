@@ -91,48 +91,34 @@ ion-list{
   max-width: 80% !important;
   }
 
-  #item_message .topright{
-    margin-left: auto;
+  #item_message p{
+    color: black;
+    font-family: Candara;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 2px 8px 2px 0;
+    min-width: 10% !important;
+    max-width: 80% !important;
+    
+    /*color: black;
+    background: #eee;*/
     }
 
-  #item_message .botright{
+
+  #item_message .right{
     margin-left: auto;
+    background: #eee;
     }
-
-  
-  .topright{
-    font-family: Candara;
-    font-weight: bold;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    background: rgb(0, 172, 240);
-  }
-
-  .topleft{
-    font-family: Candara;
-    font-weight: bold;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    
+  .username{
     background: #cffed1;
     }
 
-  .topleftmairie{
-    font-family: Candara;
-    font-weight: bold;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    background: #ffcdcd;
+  .mairie{
+    background: #4c8dff;
     }
 
   
-  .botright{
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    background: #eee;
-  }
-
-  .botleft{
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+  .message{
     background: #eee;
   }

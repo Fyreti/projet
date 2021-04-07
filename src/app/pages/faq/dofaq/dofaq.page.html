@@ -20,15 +20,15 @@
   </ion-header>
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
-      <p class="topleftmairie" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</p>
-      <p class="botleft" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <p class="mairie" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.username}}</p>
+      <p class="message" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
       <br>
 
       
-      <p class="botright" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</p>
+      <p class="right" *ngIf="(message.role | uppercase)==='USER' && userApp.email === message.mail">{{message.message}}</p>
 
-      <p class="topleft" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</p>
-      <p class="botleft" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</p>
+      <p class="username" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.username}}</p>
+      <p class="message" *ngIf="(message.role | uppercase)==='USER' && userApp.email !== message.mail">{{message.message}}</p>
     </div>
     
   </ion-list>
@@ -53,11 +53,11 @@
 
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
-      <p class="botright" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <p class="message" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
       <br>
 
-      <p class="topleft" *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</p>
-      <p class="botleft" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
+      <p class="username" *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</p>
+      <p class="message" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
     </div>
     
   </ion-list>
