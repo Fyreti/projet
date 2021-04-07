@@ -31,10 +31,10 @@ export class SignupComponent implements OnInit {
               public platform: Platform ) 
               {
                 this.setCurrentPlatform();
-               }
+              }
 
   ngOnInit() {
-    this.WhereAmI();
+    this.getloc();
     console.log(this.city);
     this.initForm();
   }
@@ -67,32 +67,41 @@ export class SignupComponent implements OnInit {
       }
     );
   }
+  
 
+  
   // ***Géolocalisation***
-  WhereAmI(){
-    var lat;
-    var long;
+  getloc(){
 
-    //get latitude and longitude of user
     this.geolocation.getCurrentPosition().then((resp) => { 
-      lat = resp.coords.latitude;
-      long = resp.coords.longitude;
-      this.latitude = lat;
-      this.longitude = long;
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-    setTimeout(() => this.FindCityDesktop(lat,long),1500);
     
+    setTimeout(() => this.WhereAmI(),800);
+  }
+  
+  WhereAmI(){
+    if(this.setCurrentPlatform() === "mobile")
+    {
+      setTimeout(() => this.FindCity(this.latitude,this.longitude),500);
+    }
+    else
+    {
+      setTimeout(() => this.FindCityDesktop(this.latitude,this.longitude),100);
+    }
   }
 
-  FindCityDesktop(latitude,longitude){
+  FindCityDesktop(latitude, longitude){
 
     this.cityData = this.httpClient
     .get('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + latitude + '&lon=' + longitude + '&zoom=18&addressdetails=1');
     
     this.cityData
     .subscribe(data => {
+      console.log(data)
       if(data.address.town)
       {
         this.city = data.address.town;
@@ -104,15 +113,14 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  FindCity(latitude,longitude){
+  FindCity(latitude, longitude){
     //get city of the position find above
     let options: NativeGeocoderOptions = { useLocale: true, maxResults: 5 };
-    
+
     this.nativeGeocoder.reverseGeocode(latitude, longitude, options)
     .then((result: NativeGeocoderResult[]) => {
-      this.city = result[0].locality;
-    })
-    .catch((error: any) => alert(error));
+    this.city = result[0].locality;
+    }).catch((error: any) => alert(error));
   }
 
   private setCurrentPlatform() : string {
