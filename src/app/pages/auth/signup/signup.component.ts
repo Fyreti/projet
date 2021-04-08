@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   latitude = 0;
   longitude = 0;
   city="";
+  checkloc = false;
   address = {};
 
   constructor(private formBuilder: FormBuilder,
@@ -39,6 +40,7 @@ export class SignupComponent implements OnInit {
     this.initForm();
   }
 
+  
   initForm(){
     this.signUpForm = this.formBuilder.group( 
       {
@@ -50,6 +52,7 @@ export class SignupComponent implements OnInit {
       }
     )
   }
+
 
   onSubmit(){
     const username = this.signUpForm.get('username').value;
@@ -71,11 +74,14 @@ export class SignupComponent implements OnInit {
 
   
   // ***Géolocalisation***
-  getloc(){
 
+  getloc(){
     this.geolocation.getCurrentPosition().then((resp) => { 
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
+      if(!(this.longitude == this.latitude)){
+        this.checkloc = true;
+      }
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -84,13 +90,16 @@ export class SignupComponent implements OnInit {
   }
   
   WhereAmI(){
-    if(this.setCurrentPlatform() === "mobile")
+    if(this.setCurrentPlatform() === "mobile" && this.checkloc)
     {
       setTimeout(() => this.FindCity(this.latitude,this.longitude),500);
     }
+    else if(this.setCurrentPlatform() === "browser" && this.checkloc){
+      setTimeout(() => this.FindCityDesktop(this.latitude,this.longitude),100);
+    }
     else
     {
-      setTimeout(() => this.FindCityDesktop(this.latitude,this.longitude),100);
+      this.getloc();
     }
   }
 
