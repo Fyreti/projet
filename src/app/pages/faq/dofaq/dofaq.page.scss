@@ -11,6 +11,7 @@ ion-menu-button {
   transform: translateY(-50%);
 }
 
+
 #container strong {
   font-size: 20px;
   line-height: 26px;
@@ -25,6 +26,10 @@ ion-menu-button {
 
 #container a {
   text-decoration: none;
+}
+
+.add_button{
+  text-align: right;
 }
 
 .font{

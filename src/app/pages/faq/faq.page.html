@@ -15,21 +15,45 @@
 </ion-header>
 
 
+
+
 <ion-content *ngIf="(userApp.role|uppercase) === 'VALID'" [fullscreen]="true">
-  
-  <ion-list id="container">
-    <div id="buttonvote">
-      <ion-button class='font' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
+  <div id="main">
+
+    <div id="texte">
+      <p>Bienvenue sur le forum ! <br> Ici vous pouvez discuter de différents sujets avec les citoyens et votre mairie. <br>
+      N'oubliez pas de rester courtois et respectueux. Ce forum est avant tout un lieu d'échange et de partage. On espère que vous aimerez ! </p>
     </div>
-  </ion-list>
+    
+    <ion-list id="container">
+      <div id="buttonvote">
+        <ion-button class='forum_button' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
+      </div>
+    </ion-list>
+
+  </div>
 </ion-content>
+
+
 
 <ion-content *ngIf="(userApp.role|uppercase) === 'MAIRIE'" [fullscreen]="true">
+  <div id="main">
 
-  <ion-list id="container">
-    <div id="buttonvote">
-      <ion-button class='font' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
+    <div id="texte">
+      <p>Bienvenue sur le forum ! <br> Ici vous pouvez discuter de différents sujets avec vos citoyens. <br>
+      N'oubliez pas que tout le monde peut voir vos messages. Ce forum est avant tout un lieu d'échange et de partage. On espère que vous aimerez ! </p>
     </div>
-  </ion-list>
 
+    <ion-list id="container">
+      <div id="buttonvote">
+        <ion-button class='forum_button' *ngFor="let faq of allFaq" (click)="goToFaq(faq)">{{faq}}</ion-button>
+      </div>
+
+      
+
+    </ion-list>
+    
+  </div>
 </ion-content>
+
+

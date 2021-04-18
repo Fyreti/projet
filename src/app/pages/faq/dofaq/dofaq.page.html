@@ -6,7 +6,7 @@
     <ion-row>
       <ion-col class='title_page' >Forum</ion-col>
       <ion-col class='add_button'>
-        <ion-button *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteForum()">Supprimer</ion-button>
+        <ion-button class='font' *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteForum()">Supprimer</ion-button>
       </ion-col>
     </ion-row>
   </ion-toolbar>
