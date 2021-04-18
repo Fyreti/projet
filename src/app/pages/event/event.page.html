@@ -44,12 +44,13 @@
           Date de fin : {{event.dateFin}}
         </ion-card-content>
         <ion-card-content>
-          Current date : {{currentDate.getDate()}}
+          Date actuelle : {{currentDate.getDate()}}
         </ion-card-content>
-        <ion-button  *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
+        <ion-button id="delete_button" *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
       </ion-col>
 
     </ion-row>
+
 
     <ion-row id='mobile_version' *ngIf="displayEvent(event) && ((userApp.role | uppercase)!=='MAIRIE')">
 
@@ -71,11 +72,12 @@
           Date de fin : {{event.dateFin}}
         </ion-card-content>
         <ion-card-content>
-          Current date : {{currentDate.getDate()}}
+          Date actuelle : {{currentDate.getDate()}}
         </ion-card-content>
-        <ion-button  *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
+        <ion-button id="delete_button" *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer l'event</ion-button>
       </ion-col>
 
     </ion-row>
+    
   </ion-card>
 </ion-content>

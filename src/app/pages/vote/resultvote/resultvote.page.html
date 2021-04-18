@@ -18,12 +18,18 @@
       <ion-title size="large">{{ folder }}</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-list>
-    <ion-button *ngFor="let reponse of allReponse; let index = index" >{{reponse}} vote : {{allNumberOfVote[index]}}</ion-button>
-  </ion-list>
-  <div id="container">
-    <strong class="capitalize">Vote </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    
+
+  <div id="texte">
+    <p> Résultats du vote </p>
   </div>
+
+  <div id="container">
+    <h4 id="VoteName" >{{vote}}</h4>
+  </div>
+  <ion-list id="container">
+    <div id="buttonvote">
+      <h5 class='results' *ngFor="let reponse of allReponse; let index = index" >{{reponse}} <br> vote : {{allNumberOfVote[index]}}</h5>
+    </div>
+  </ion-list>
+
 </ion-content>

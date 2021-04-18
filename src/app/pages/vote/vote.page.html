@@ -17,19 +17,27 @@
 
 <ion-content *ngIf="(userApp.role|uppercase) === 'VALID'" [fullscreen]="true">
 
+  <div id="texte">
+    <p>Liste des votes disponibles </p>
+  </div>
+
   <ion-list id="container">
     <div id="buttonvote">
-      <ion-button class='font' *ngFor="let vote of allVote" (click)="goToVote(vote)">{{vote}}</ion-button>
+      <ion-button id="vote_button" class='font' *ngFor="let vote of allVote" (click)="goToVote(vote)">{{vote}}</ion-button>
     </div>
   </ion-list>
   
 </ion-content>
 
 <ion-content *ngIf="(userApp.role|uppercase) === 'MAIRIE'" [fullscreen]="true">
+
+  <div id="texte">
+    <p>Liste des votes en cours </p>
+  </div>
   
   <ion-list id="container">
     <div id="buttonvote">
-      <ion-button class='font' *ngFor="let vote of allVote" (click)="goToResultVote(vote)">{{vote}}</ion-button>
+      <ion-button id="vote_button" class='font' *ngFor="let vote of allVote" (click)="goToResultVote(vote)">{{vote}}</ion-button>   
     </div>
   </ion-list>
   

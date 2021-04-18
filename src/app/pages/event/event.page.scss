@@ -17,6 +17,12 @@ font-family: Candara;
 text-align: right;
 }
 
+#delete_button{
+  position: absolute;
+  bottom: 1%;
+  right: 1%;
+}
+
 .img{
 margin: 0px;
 max-width: 100%;
@@ -40,6 +46,11 @@ max-height: 100%;
 
   #mobile_version{
     display: block;
+  }
+
+  ion-col{
+    display: flex;
+    flex-direction: column;
   }
 
   #img_col{

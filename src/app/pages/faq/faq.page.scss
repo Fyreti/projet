@@ -43,8 +43,31 @@ ion-menu-button {
   }
 
   .forum_button{
-    margin: 10px;
-    text-overflow: ellipsis;
+    flex-flow: column;
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: normal;
+    height: 50px;
     font-family: Candara;
   }
 
+
+  @media (max-width: 1300px) and (max-width: 3000px) {
+
+    .forum_button{
+      flex-flow: column;
+      overflow: inherit ;
+      text-overflow: inherit ;
+      white-space: normal;
+      height: 60px;
+      font-family: Candara;
+    }
+
+    #texte {
+      text-align: center;
+      font-size: 15px;
+      color: #8c8c8c;
+      margin: 10px;
+    }
+    
+    }

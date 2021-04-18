@@ -2,29 +2,76 @@ ion-menu-button {
     color: var(--ion-color-primary);
   }
   
-  .add_button{
-    text-align: right;
-  }
+.add_button{
+  text-align: right;
+}
 
-  .title_page{
-    font-family: Candara;
-    font-weight: bold;
-    font-size:x-large;
-    margin:10px;
+.title_page{
+  font-family: Candara;
+  font-weight: bold;
+  font-size:x-large;
+  margin:10px;
+}
+
+#main{
+  max-width: 80%;
+}
+
+#container {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+}
+
+#buttonvote{
+  max-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#vote_button{
+  flex-flow: column;
+  overflow: inherit ;
+  text-overflow: inherit ;
+  white-space: normal;
+  height: 50px;
+}
+
+.font{
+  font-family: Candara;
+}
+
+#texte {
+  text-align: center;
+  font-size: 25px;
+  color: #8c8c8c;
+  margin: 10px;
+}
+
+
+
+@media (max-width: 1300px) and (max-width: 3000px) {
+
+  #vote_button{
+    flex-flow: column;
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: normal;
+    height: 60px;
   }
 
   #container {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 10%;
+    right: 10%;
   }
 
-  #buttonvote{
-    max-width: fit-content;
-    display: flex;
-    flex-direction: column;
+  #texte {
     text-align: center;
+    font-size: 20px;
+    color: #8c8c8c;
+    margin: 10px;
   }
-
-  .font{
-    font-family: Candara;
+  
   }
