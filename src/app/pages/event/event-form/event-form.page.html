@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Event Ville</ion-title>
+    <ion-title>Ajouter un Event pour Ville</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,27 +18,36 @@
     <h2>Ajout d'un évenement pour la ville</h2>
 
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+
       <ion-item>
-        <ion-label>Nom</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
+        <ion-input placeholder="Nom de l'event" class='font'type="text" formControlName="name"></ion-input>
       </ion-item>
+
+      <br><br>
+
       <ion-item>
-        <ion-label>Information</ion-label>
-        <ion-input type="text" formControlName="information"></ion-input>
+        <ion-textarea placeholder='Information' cols="80" rows="8" class='font'type="text" formControlName="information"></ion-textarea>
       </ion-item>
+
+      <br><br>
+
       <ion-item>
-        <ion-label>Photo</ion-label>
-        <ion-input type="text" formControlName="photo"></ion-input>
+        <ion-input placeholder='Date de début' class='font'type="date" formControlName="dateDebut"></ion-input>
       </ion-item>
+
       <ion-item>
-        <ion-label>DateDebut</ion-label>
-        <ion-input type="date" formControlName="dateDebut"></ion-input>
+        <ion-input placeholder='Date de fin' class='font' type="date" formControlName="dateFin"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label>DateFin</ion-label>
-        <ion-input type="date" formControlName="dateFin"></ion-input>
-      </ion-item>
-      <ion-button type="submit" [disabled]="eventForm.invalid" block>Ajouter un évenement de ville</ion-button>
+      
+      <br><br>
+      
+      <img *ngIf="urlUploadFile!== ''" src="{{urlUploadFile}}"/>
+      <ion-progress-bar color="secondary" value="{{progress}}"></ion-progress-bar><br><br>
+      <label for="file">Charger une image : </label><br><br>
+      <input type="file" id="file" formControlName="photo" (change)="handleFileInput($event.target.files)">
+      
+      <br><br>
+      <ion-button class='font' type="submit" [disabled]="eventForm.invalid" block>Ajouter un évenement de ville</ion-button>
     </form>
   </div>
 </ion-content>

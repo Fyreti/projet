@@ -3,39 +3,44 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>SoundCity Vote</ion-title>
+    <ion-title>Ajouter un vote</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
+      <ion-title size="large">Info Vote</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">Vote </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    
+    <div id="texte">
+      <h1>Remplir pour réaliser un sondage </h1>
+    </div>
     <form [formGroup]="addvoteForm" (ngSubmit)="onSubmit()">
+
       <ion-item>
-        <ion-label>Titre Vote</ion-label>
-        <ion-input type="text" formControlName="titre"></ion-input>
+        <ion-input placeholder ="Titre du vote" class='font' type="text" formControlName="titre"></ion-input>
       </ion-item>
+
+      <br><br>
       <ion-item>
-        <ion-label>Question</ion-label>
-        <ion-input type="text" formControlName="question"></ion-input>
+        <ion-input placeholder ="Question du vote" class='font' type="text" formControlName="question"></ion-input>
       </ion-item>
-      
+
+      <br><br>
+
       <form [formGroup]="addreponseForm" (ngSubmit)="onSubmit2()">
         <ion-item>
-          <ion-label>Réponse: </ion-label>
-          <ion-input type="text" formControlName="reponse"></ion-input>
-          <ion-button type="submit" [disabled]="addreponseForm.invalid" block>Send</ion-button>
+          <ion-input placeholder ="Réponse(s)" class='font' type="text" formControlName="reponse"></ion-input>
+          <ion-button type="submit" [disabled]="addreponseForm.invalid" block>Ajouter</ion-button>
         </ion-item>
       </form>
       <ion-list *ngFor="let reponse of allReponse">
-        <ion-label>{{reponse}}</ion-label>
+        <ion-label >{{reponse}}</ion-label>
+        <br>
         <ion-button (click)="supprimerReponse(reponse)">Supprimer</ion-button>
       </ion-list>
 

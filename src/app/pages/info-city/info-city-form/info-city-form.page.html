@@ -32,8 +32,8 @@
       <ion-progress-bar color="secondary" value="{{progress}}"></ion-progress-bar><br><br>
       <label for="file">Charger une image : </label><br><br>
       <input formControlName="file" type="file"
-            id="file"
-            (change)="handleFileInput($event.target.files)">
+        id="file"
+        (change)="handleFileInput($event.target.files)">
 
       <br><br>
       <ion-button class='font' type="submit" [disabled]="infoCityForm.invalid" block>Ajouter</ion-button>
