@@ -33,7 +33,7 @@ export class InfoCityFormPage implements OnInit {
     this.initForm();
     this.urlUploadFile = "";
   }
-
+  
   initForm(){
     this.infoCityForm = this.formBuilder.group( 
       {
@@ -49,6 +49,9 @@ export class InfoCityFormPage implements OnInit {
     const information = this.infoCityForm.get('information').value;
     //const photo = this.infoCityForm.get('photo').value;
     this.infoCityService.setInfoCity(this.userApp ,name, information, this.urlUploadFile);
+    this.file = null;
+    this.urlUploadFile = "";
+    this.infoCityForm.reset();
     this.router.navigate(['/info-city']);
   }
 
