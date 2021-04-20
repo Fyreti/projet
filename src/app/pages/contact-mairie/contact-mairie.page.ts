@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { MessageApp } from 'src/app/model/message.model';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-contact-mairie',
@@ -19,6 +18,7 @@ export class ContactMairiePage implements OnInit {
   sendMessageForm: FormGroup;
   errorMessage: string;
   public allNotif: Map<string,number>;
+
   constructor(public userApp: UserApp, 
     private dataService: DataService, 
     private formBuilder: FormBuilder,
@@ -43,7 +43,7 @@ export class ContactMairiePage implements OnInit {
           this.allMessage = allMessage;
         }); 
         this.messageService.resetNotifUser(this.userApp);
-        firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie').doc(this.userApp.email).collection('message')
+        firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email).collection('message')
           .onSnapshot((querySnapshot) => {
             if (this.router.url === '/contact-mairie'){
               this.messageService.resetNotifUser(this.userApp);
@@ -59,14 +59,12 @@ export class ContactMairiePage implements OnInit {
         console.log("Mairie fr");
         this.messageService.getAllUser(this.userApp).then((allNotif) => {
           this.allNotif = allNotif;
-          this.allNotif = this.sortByValue(this.allNotif);
-          firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('contact-mairie')
+          
+          firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie')
           .onSnapshot((querySnapshot) => {
-            // == and not === because when you click on a specific conversation and id is add at the end
-            if ((this.router.url === '/contact-mairie')||(this.router.url.includes('/message-mairie'))){
+            if (this.router.url === '/contact-mairie'){
               this.messageService.getAllUser(this.userApp).then((allNotif) => {
                 this.allNotif = allNotif;
-                this.allNotif = this.sortByValue(this.allNotif);
               });
             }
           });
@@ -117,39 +115,5 @@ export class ContactMairiePage implements OnInit {
     setTimeout( function() {}, 3000);
   }*/
 
-  sortByValue(allNotif : Map<string,number>) : Map<string,number>{
-    
-    
-    let tamp : Map<string,number> = new Map<string, number>();
-   
-    let arrayNotif : Array<number> = new Array<number>();
-    
-    //Get all value (notif) put them in array
-    allNotif.forEach((value: number, key: string) => {
-      arrayNotif.push(value);
-    });
-    //Sort the value
-    arrayNotif.sort(function(a, b) {
-      return a - b;
-    });
 
-    while (allNotif.size>0){
-      allNotif.forEach((value: number, key: string) => {
-        if (arrayNotif){
-          if ( value === arrayNotif[arrayNotif.length-1]){
-            console.log("hey"+arrayNotif.length);
-            tamp.set(key, value);
-            arrayNotif.pop();
-            allNotif.delete(key);
-          }
-        }
-        
-      });
-    }
-    return tamp;
-  }
-
-  asIsOrder(a, b) {
-    return 1;
- }
 }

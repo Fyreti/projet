@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,7 @@ export class AuthComponent implements OnInit {
   authStatus: boolean;
 
   signInForm: FormGroup;
+  mdpForm: FormGroup;
   errorMessage: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -31,6 +32,12 @@ export class AuthComponent implements OnInit {
         password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
       }
     )
+
+    this.mdpForm = this.formBuilder.group(
+      {
+        email2: ['', [Validators.required, Validators.email]],
+      }
+    )
   }
 
   onSubmit(){
@@ -44,6 +51,24 @@ export class AuthComponent implements OnInit {
       (error) => {
         console.log("wrong password or email");
         this.errorMessage = "Identifiant ou mot de passe incorrect.";
+      }
+    );
+  }
+
+  onSubmitmdp(){
+    const email = this.mdpForm.get('email2').value;
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.auth().sendPasswordResetEmail(email).then(
+          () => {
+            console.log("Email envoyé pour reset password !")
+          resolve(true);
+        },(error) => {
+          console.log("Echec de l'envoi de l'email pour reset password !")
+          reject(error);
+        }
+        );
       }
     );
   }
