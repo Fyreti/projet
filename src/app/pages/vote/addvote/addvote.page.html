@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Ajouter un vote</ion-title>
+    <ion-title class='font'>Ajouter un sondage</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,7 +17,7 @@
   <div id="container">
     
     <div id="texte">
-      <h1>Remplir pour réaliser un sondage </h1>
+      <h1>Remplissez pour créer un sondage </h1>
     </div>
     <form [formGroup]="addvoteForm" (ngSubmit)="onSubmit()">
 
@@ -35,16 +35,18 @@
       <form [formGroup]="addreponseForm" (ngSubmit)="onSubmit2()">
         <ion-item>
           <ion-input placeholder ="Réponse(s)" class='font' type="text" formControlName="reponse"></ion-input>
-          <ion-button type="submit" [disabled]="addreponseForm.invalid" block>Ajouter</ion-button>
+          <ion-button class='font' type="submit" [disabled]="addreponseForm.invalid" block>Ajouter</ion-button>
         </ion-item>
       </form>
+      <br><br>
       <ion-list *ngFor="let reponse of allReponse">
-        <ion-label >{{reponse}}</ion-label>
+        <ion-label id = "reponse">Réponse : {{reponse}}</ion-label>
         <br>
-        <ion-button (click)="supprimerReponse(reponse)">Supprimer</ion-button>
+        <ion-button class='font' color="danger" size="small" (click)="supprimerReponse(reponse)">Supprimer</ion-button>
       </ion-list>
+      <br>
 
-      <ion-button type="submit" [disabled]="addvoteForm.invalid || !verif" block>Ajouter Catégorie</ion-button>
+      <ion-button class='font' type="submit" [disabled]="addvoteForm.invalid || !verif" block>Ajouter Catégorie</ion-button>
     </form>
     
     
