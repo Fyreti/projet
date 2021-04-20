@@ -15,12 +15,11 @@
   </ion-header>
 
   <div id="container">
-    <h2>Ajout d'un évenement pour la ville</h2>
 
     <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
 
       <ion-item>
-        <ion-input placeholder="Nom de l'event" class='font'type="text" formControlName="name"></ion-input>
+        <ion-input placeholder="Nom" class='font'type="text" formControlName="name"></ion-input>
       </ion-item>
 
       <br><br>
