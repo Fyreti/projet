@@ -34,6 +34,10 @@ ion-menu-button {
   text-decoration: none;
 }
 
+.font{
+  font-family: Candara;
+}
+
 .card-body {
   background-color: #e0e0e0;
   padding: 30px;
@@ -44,22 +48,14 @@ ion-menu-button {
       padding-top: 40px;
 
       .email {
-          font-size: 24px;
+          font-size: 30px;
           font-weight: 600;
           color: #111314;
       }
 
-      .age {
-          font-size: 90%;
+      .info {
+          font-size: 25px;
           color: #111314;
-          text-transform: uppercase;
-          margin: 0 auto;
-      }
-
-      .ville{
-        font-size: 90%;
-          color: #111314;
-          text-transform: uppercase;
           margin: 0 auto;
       }
   }

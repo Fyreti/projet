@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class='title_page'>SoundCity Profile</ion-title>
+    <ion-title class='title_page'>Mon profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,10 +25,12 @@
     <div class="card-body">
       <div class="user-meta ion-text-center">
         <h3 class="email">{{ userApp.email }}</h3>
-        <h5 class="age">{{ userApp.age }}</h5>
-        <h6 class="ville">{{ userApp.ville }}</h6>
+        <h5 class="info">Nom : {{ userApp.username }}</h5>
+        <h5 class="info">Age : {{ userApp.age }}</h5>
+        <h5 class="info">Ville : {{ userApp.ville }}</h5>
       </div>
-      <ion-button (click)="resetPassword()" color="primary">Mot de passe oublié</ion-button>
+      <br>
+      <ion-button class='font' (click)="resetPassword()" color="primary">Mot de passe oublié</ion-button>
       
     </div>
   </div>

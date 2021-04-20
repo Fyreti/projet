@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Ajouter un Event pour Ville</ion-title>
+    <ion-title class='font'>Ajouter un évènement</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -47,7 +47,7 @@
       <input type="file" id="file" formControlName="photo" (change)="handleFileInput($event.target.files)">
       
       <br><br>
-      <ion-button class='font' type="submit" [disabled]="eventForm.invalid" block>Ajouter un évenement de ville</ion-button>
+      <ion-button class='font' type="submit" [disabled]="eventForm.invalid" block>Ajouter</ion-button>
     </form>
   </div>
 </ion-content>
