@@ -49,7 +49,6 @@ export class AddvotePage implements OnInit {
   initForm(){
     this.addvoteForm = this.formBuilder.group( 
       {
-        titre: ['', [Validators.required]],
         question: ['', [Validators.required]]
       }
     )
@@ -78,7 +77,6 @@ export class AddvotePage implements OnInit {
   }
 
   onSubmit(){
-    const titre : string = this.addvoteForm.get('titre').value;
     const question : string = this.addvoteForm.get('question').value;
     
     
@@ -87,7 +85,7 @@ export class AddvotePage implements OnInit {
       console.log(element);
     });
     
-    this.voteservice.addVote(titre, question, this.allReponse, this.userApp);
+    this.voteservice.addVote(question, this.allReponse, this.userApp);
 
     this.allReponse = [];
     this.addvoteForm.reset();

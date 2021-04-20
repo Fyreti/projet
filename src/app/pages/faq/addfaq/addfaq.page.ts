@@ -36,7 +36,6 @@ export class AddfaqPage implements OnInit {
   initForm(){
     this.addfaqForm = this.formBuilder.group( 
       {
-        titre: ['', [Validators.required]],
         question: ['', [Validators.required]]
       }
     )
@@ -45,10 +44,9 @@ export class AddfaqPage implements OnInit {
   onSubmit(){
     
     console.log('coucou');
-    const titre : string = this.addfaqForm.get('titre').value;
     const question : string = this.addfaqForm.get('question').value;
 
-    this.faqservice.addFaq(titre, question, this.userApp);
+    this.faqservice.addFaq(question, this.userApp);
     this.router.navigate(['/faq']);
   }
 

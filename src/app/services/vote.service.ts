@@ -18,14 +18,13 @@ export class VoteService {
     private AllNumberOfVote: Array<number> = [];
   constructor() {  }
 
-  addVote(titre : string, question : string, allvote : Array<string>, userApp: UserApp){
+  addVote(question : string, allvote : Array<string>, userApp: UserApp){
       if(userApp.role.toUpperCase() === 'MAIRIE'){
         firebase.default.firestore().collection('ville').doc(userApp.ville).set({
             ville: userApp.ville
         });
         //firebase.default.firestore().collection('ville').doc(userApp.ville).collection('vote').doc(question).delete();
         firebase.default.firestore().collection('ville').doc(userApp.ville).collection('vote').doc(question).set({
-            titre : titre,
             question : question,
             reponses : allvote
         });

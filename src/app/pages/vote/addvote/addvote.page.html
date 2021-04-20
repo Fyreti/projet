@@ -21,10 +21,6 @@
     </div>
     <form [formGroup]="addvoteForm" (ngSubmit)="onSubmit()">
 
-      <ion-item>
-        <ion-input placeholder ="Titre du vote" class='font' type="text" formControlName="titre"></ion-input>
-      </ion-item>
-
       <br><br>
       <ion-item>
         <ion-input placeholder ="Question du vote" class='font' type="text" formControlName="question"></ion-input>
@@ -46,7 +42,7 @@
       </ion-list>
       <br>
 
-      <ion-button class='font' type="submit" [disabled]="addvoteForm.invalid || !verif" block>Ajouter Catégorie</ion-button>
+      <ion-button class='font' type="submit" [disabled]="addvoteForm.invalid || !verif" block>Ajouter le vote</ion-button>
     </form>
     
     

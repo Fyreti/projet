@@ -18,14 +18,13 @@ export class FaqService {
     private AllNumberOfVote: Array<number> = [];
   constructor() {  }
 
-  addFaq(titre : string, question : string, userApp: UserApp){
+  addFaq(question : string, userApp: UserApp){
       if(userApp.role.toUpperCase() === 'MAIRIE'){
         firebase.default.firestore().collection('ville').doc(userApp.ville).set({
             ville: userApp.ville
         });
         //firebase.default.firestore().collection('ville').doc(userApp.ville).collection('vote').doc(question).delete();
         firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(question).set({
-            titre : titre,
             question : question
         });
         
