@@ -8,7 +8,6 @@ ion-menu-button {
   left: 0;
   right: 0;
   top: 50%;
-  transform: translateY(-50%);
 }
 
 
@@ -42,9 +41,9 @@ ion-menu-button {
 
 #input{
   position: fixed;
-bottom: 0;
-left: 0;
-right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 ion-list{
@@ -57,6 +56,13 @@ ion-list{
   font-size:x-large;
   margin:10px;
 }
+
+
+ion-input, ion-item{
+  --background: #ececec;
+  }
+  
+
 
 @media (max-width: 1000px) {
 
@@ -112,7 +118,7 @@ ion-list{
 
   #item_message .right{
     margin-left: auto;
-    background: #eee;
+    background: #deeeff;
     }
     
   .username{

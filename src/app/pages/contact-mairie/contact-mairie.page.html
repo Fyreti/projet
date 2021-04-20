@@ -47,7 +47,7 @@
   </ion-list>
 
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
-    <ion-item color="primary">
+    <ion-item >
       <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
       <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>

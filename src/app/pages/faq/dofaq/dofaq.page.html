@@ -35,7 +35,7 @@
 
   
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
-    <ion-item color="primary">
+    <ion-item>
       <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
       <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
@@ -54,7 +54,8 @@
 
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
-      <p class="message" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      
+      <p class="right" *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
       <br>
 
       <p class="username" *ngIf="(message.role | uppercase)==='USER'">{{message.username}}</p>
@@ -65,7 +66,7 @@
 
 
   <form id="input" [formGroup]="sendMessageForm" (ngSubmit)="onSubmit()">
-    <ion-item color="primary">
+    <ion-item >
       <ion-input placeholder='Message' class='font' type="text" formControlName="message"></ion-input>
       <ion-button class='font' color="dark" type="submit" [disabled]="sendMessageForm.invalid" block>Send</ion-button>
     </ion-item>
@@ -83,7 +84,6 @@
 
   <div id="container">
     <strong class="capitalize">Your account is not valid </strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
     <h2>Send Message</h2>
     
   </div>

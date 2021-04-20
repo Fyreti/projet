@@ -50,6 +50,11 @@ ion-menu-button {
   background: #deeeff;
 }
 
+ion-input, ion-item{
+  --background: #ececec;
+  }
+  
+
 
 /*
 @supports(mix-blend-mode: screen) {
