@@ -21,13 +21,14 @@ ion-menu-button {
   position: absolute;
   left: 20%;
   right: 20%;
+  align-items: center;
 }
 
 #buttonvote{
-  max-width: fit-content;
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 }
 
 #vote_button{
@@ -45,7 +46,7 @@ ion-menu-button {
 #texte {
   text-align: center;
   font-size: 25px;
-  color: #8c8c8c;
+  color: #696969;
   margin: 10px;
 }
 
@@ -70,7 +71,7 @@ ion-menu-button {
   #texte {
     text-align: center;
     font-size: 20px;
-    color: #8c8c8c;
+    color: #696969;
     margin: 10px;
   }
   

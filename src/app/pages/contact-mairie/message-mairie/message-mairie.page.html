@@ -16,8 +16,8 @@
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
       
-      <p class='left' *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
-      <p class="right" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
+      <p class='right' *ngIf="(message.role | uppercase)==='MAIRIE'">{{message.message}}</p>
+      <p class="left" *ngIf="(message.role | uppercase)==='USER'">{{message.message}}</p>
 
     </div>
   </ion-list>
