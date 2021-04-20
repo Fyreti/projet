@@ -135,7 +135,7 @@ export class AppComponent implements OnInit {
     
   }
 
-  onSignOut(titleSelect : string) {
+  onSignOut(titleSelect : any) {
     if (titleSelect == 'Déconnexion'){
       console.log("deconnexion");
       this.authService.signOutUser();
