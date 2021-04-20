@@ -54,13 +54,7 @@ export class DofaqPage implements OnInit {
           this.allMessage = allMessage;
         }); 
       }
-      
-      }, (raison) => {
-      console.log(raison); // Erreur !
-    });//set the object userApp with all info of the user who is connected
-    this.initForm();
-
-    firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('faq').doc(this.faq).collection('message')
+      firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('faq').doc(this.faq).collection('message')
     .onSnapshot((querySnapshot) => {
       if (decodeURIComponent(this.router.url) === '/dofaq/'+this.faq){
         
@@ -70,8 +64,12 @@ export class DofaqPage implements OnInit {
         });
       }
       
-  });
+    });
       
+      }, (raison) => {
+      console.log(raison); // Erreur !
+    });//set the object userApp with all info of the user who is connected
+    this.initForm();
   }
 
   initForm(){
