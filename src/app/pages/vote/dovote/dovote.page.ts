@@ -17,7 +17,7 @@ export class DovotePage implements OnInit {
   addvoteForm: FormGroup;
   public variabletemps:string;
   public allReponse : Array<string> = [];
-  private vote: string;
+  public vote: string;
   public voteOrNot : Array<number>;
 
   constructor(public userApp: UserApp, 

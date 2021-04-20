@@ -14,9 +14,6 @@
 
 <ion-content #content padding class="chatPage" *ngIf=" (userApp.role | uppercase)==='VALID'"[fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
   </ion-header>
   <ion-list lines="none" class='list_message'>
     <div id='item_message' *ngFor="let message of allMessage">
@@ -47,9 +44,6 @@
 
 <ion-content #content padding class="chatPage" *ngIf="(userApp.role | uppercase)==='MAIRIE'"[fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ folder }}</ion-title>
-    </ion-toolbar>
   </ion-header>
 
   <ion-list lines="none" class='list_message'>

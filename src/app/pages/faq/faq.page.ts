@@ -12,7 +12,7 @@ import { FaqService } from 'src/app/services/faq.service';
 })
 export class FAQPage implements OnInit {
 
-  private allFaq : Array<string> = [];
+  public allFaq : Array<string> = [];
 
   constructor(public userApp: UserApp,
     private dataService: DataService,

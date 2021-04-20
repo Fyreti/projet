@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VotePage implements OnInit {
 
-private allVote : Array<string> = [];
+public allVote : Array<string> = [];
 
   constructor(public userApp: UserApp,
     private dataService: DataService,
