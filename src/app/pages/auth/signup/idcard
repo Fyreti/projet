@@ -1,0 +1,51 @@
+(function() {
+	var fileUploadEl = document.getElementById('file-upload'),
+		srcImgEl = document.getElementById('src-image'),
+		canvas = document.getElementById('the-canvas');
+		canvas2 = document.getElementById('the-canvas2');
+
+	fileUploadEl.addEventListener("change", function (e) {
+	  srcImgEl.src = URL.createObjectURL(e.target.files[0]);
+	}, false);
+
+	srcImgEl.onload = function () {
+		let src = cv.imread(srcImgEl); // load the image from <img>
+		let dsize = new cv.Size(2500, 1816);
+		cv.resize(src, src, dsize, 0, 0, cv.INTER_AREA);
+		cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
+		let name = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+		let fname = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);//output image
+		let fnamerect = new cv.Rect(980, 330, 1000, 200);
+		let namerect = new cv.Rect(1080, 500, 1200, 200);
+		fname = src.roi(fnamerect);
+		name = src.roi(namerect);
+		cv.threshold(fname, fname, 120, 175, cv.THRESH_BINARY);
+		cv.threshold(name, name, 120, 175, cv.THRESH_BINARY);
+		cv.imshow('the-canvas', fname);
+		cv.imshow('the-canvas2', name);
+		Tesseract.recognize(
+	            canvas,
+	            'eng',
+	            { logger: m => console.log(m) }
+	        ).then(({ data: { text } }) => {
+	            console.log(text);
+	        })
+		Tesseract.recognize(
+	            canvas2,
+	            'eng',
+	            { logger: m => console.log(m) }
+	        ).then(({ data: { text } }) => {
+	            console.log(text);
+	        })
+		src.delete();
+		name.delete();
+		fname.delete();
+
+	}
+
+	// opencv loaded?
+	window.onOpenCvReady = function () {
+		document.getElementById('loading-opencv-msg').remove();
+	}
+
+})()

@@ -110,7 +110,7 @@ export class SignupComponent implements OnInit {
     
     this.cityData
     .subscribe(data => {
-      console.log(data)
+      //console.log(data)
       if(data.address.town)
       {
         this.city = data.address.town;

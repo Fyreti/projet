@@ -4,15 +4,25 @@
     <ion-title class='font'>S'inscrire</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  
+  <script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+  <script async src="js/opencv.js"></script>
 
   <div id="container">
     <img id='accueil_logo' src="..\assets\img\SondCity_logo.png" >
     <p>Bienvenue sur SondCity ! <br> L'inscription ne vous prendra que quelques minutes. <br>
       Afin de vérifier votre position, vous devez autoriser et activer la localisation. </p><br><br>
+      <!--OpenCV Steven-->
 
+      <input type="file" id="file-upload"/>
+      <div class="row-align">
+        <img id="src-image" src="" alt="">
+        <canvas id="the-canvas" width="00" height="0"></canvas>
+      </div>
+      <canvas id="the-canvas2" width="00" height="0"></canvas>
+      <script src="idcard.js" async onload="onOpenCvReady();" type="text/javascript">
+      </script>
+      <!--Fin OpenCV Steven-->
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <ion-item>
         <ion-input placeholder="Nom d'utilisateur" size="40" class='font' clearInput=true type="text" formControlName="username"></ion-input>
@@ -32,7 +42,6 @@
       </ion-item><br>
       <ion-button class='font' type="submit" [disabled]="signUpForm.invalid" block>Confirmer</ion-button>
     </form>
-
     <p class="text-danger">{{ errorMessage }}</p>
   </div>
 </ion-content>
