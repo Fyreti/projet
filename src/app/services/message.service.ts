@@ -306,9 +306,14 @@ export class MessageService {
       if ((message.replace(/ /g, "").length !== 0)){
         this.date = new Date();
         if (userApp.role.toUpperCase() === "MAIRIE" || userApp.role.toUpperCase() === "VALID"){
-          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).set({
-            faq : faq
-          });
+          firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).get().then(doc =>{
+            if (doc.exists){
+              console.log("jexisteeeeee");
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).set({
+                faq : faq
+              });
+            }});
+          
           if (userApp.role.toUpperCase() === "MAIRIE"){
             firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
               message_mairie: message,
@@ -317,11 +322,17 @@ export class MessageService {
             });
           }
           else if (userApp.role.toUpperCase() === "VALID"){
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
-              message_user: message,
-              email: userApp.email,
-              username: userApp.username
-            });
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).get().then(doc =>{
+              if (doc.exists){
+                console.log("jexiste");
+                firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
+                  message_user: message,
+                  email: userApp.email,
+                  username: userApp.username
+                });
+              }
+            })
+            
           }
         }
         
