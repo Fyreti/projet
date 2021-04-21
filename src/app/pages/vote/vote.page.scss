@@ -75,4 +75,18 @@ ion-menu-button {
     margin: 10px;
   }
   
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-content{
+    --background:#1c1c1c;
   }
+
+  #container {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    background-color:#1c1c1c;
+  }
+
+}

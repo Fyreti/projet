@@ -117,3 +117,9 @@ button {
   margin:10px;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  ion-input, ion-item{
+    --background: #000000;
+    }
+}

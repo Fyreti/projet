@@ -61,16 +61,7 @@ ion-list{
 ion-input, ion-item{
   --background: #ececec;
   }
-  
 
-
-@media (max-width: 1000px) {
-
-  #Title{
-    margin-bottom: 5%;
-  }
-  
-  }
 
 #accueil_logo{
   display: block;
@@ -102,34 +93,50 @@ ion-input, ion-item{
   max-width: 80% !important;
   }
 
-  #item_message p{
-    color: black;
-    font-family: Candara;
-    border-radius: 8px;
-    padding: 8px;
-    margin: 2px 8px 2px 0;
-    min-width: 10% !important;
-    max-width: 80% !important;
-    
-    /*color: black;
-    background: #eee;*/
-    }
-
-
-  #item_message .right{
-    margin-left: auto;
-    background: #deeeff;
-    }
-    
-  .username{
-    background: #cffed1;
-    }
-
-  .mairie{
-    background: #4c8dff;
-    }
-
+#item_message p{
+  color: black;
+  font-family: Candara;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 2px 8px 2px 0;
+  min-width: 10% !important;
+  max-width: 80% !important;
   
-  .message{
-    background: #eee;
+  /*color: black;
+  background: #eee;*/
   }
+
+
+#item_message .right{
+  margin-left: auto;
+  background: #deeeff;
+  }
+  
+.username{
+  background: #cffed1;
+  }
+
+.mairie{
+  background: #4c8dff;
+  }
+
+
+.message{
+  background: #eee;
+}
+
+
+@media (max-width: 1000px) {
+
+  #Title{
+    margin-bottom: 5%;
+  }
+  
+  }
+
+
+@media (prefers-color-scheme: dark) {
+  ion-input, ion-item{
+    --background: #000000;
+    }
+}

@@ -130,22 +130,39 @@ ion-input, ion-item{
     font-family: Candara;
   }
 
-  @media (max-width: 1300px) and (max-width: 3000px) {
+@media (max-width: 1300px) and (max-width: 3000px) {
 
-    .notification-button{
-      flex-flow: column;
-      overflow: inherit ;
-      text-overflow: inherit ;
-      white-space: normal;
-      height: 60px;
-      font-family: Candara;
+  .notification-button{
+    flex-flow: column;
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: normal;
+    height: 60px;
+    font-family: Candara;
+  }
+
+  #texte {
+    text-align: center;
+    font-size: 20px;
+    color: #8c8c8c;
+    margin: 10px;
+  }
+  
+}
+
+
+@media (prefers-color-scheme: dark) {
+  ion-input, ion-item{
+    --background: #000000;
     }
 
-    #texte {
-      text-align: center;
-      font-size: 20px;
-      color: #8c8c8c;
-      margin: 10px;
-    }
-    
-    }
+  ion-content{
+    --background:#1c1c1c;
+  }
+
+  #container {
+    display: flex;
+    justify-content: center;
+    background-color: #1c1c1c;
+  }
+}

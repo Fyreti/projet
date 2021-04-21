@@ -52,6 +52,9 @@ ion-menu-button {
   }
 
 
+
+
+
   @media (max-width: 1300px) and (max-width: 3000px) {
 
     .forum_button{
@@ -70,4 +73,24 @@ ion-menu-button {
       margin: 10px;
     }
     
-    }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  ion-content{
+    --background:#1c1c1c;
+  }
+
+  #buttonvote{
+    display: flex;
+    flex-direction: column;
+    background-color:#1c1c1c;
+  }
+
+  #container {
+    display: flex;
+    justify-content: center;
+    background-color:#1c1c1c;
+  }
+
+}

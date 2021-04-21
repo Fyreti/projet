@@ -45,3 +45,19 @@ ion-button{
 }
 
 }
+
+
+@media (prefers-color-scheme: dark) {
+  ion-content{
+    --background:#1b1b1b;
+  }
+
+  #container {
+    text-align: center;
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    background-color:#1b1b1b;
+  }
+
+}

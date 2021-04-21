@@ -2,34 +2,51 @@ ion-menu-button {
     color: var(--ion-color-primary);
   }
   
-  .title_page{
-    font-family: Candara;
-    font-weight: bold;
-    font-size:x-large;
-    margin:10px;
+.title_page{
+  font-family: Candara;
+  font-weight: bold;
+  font-size:x-large;
+  margin:10px;
+}
+
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 20%;
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+
+@media (prefers-color-scheme: dark) {
+
+  ion-content{
+    --background:#1c1c1c;
   }
-  
+
   #container {
     text-align: center;
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 0%;
+    right: 0%;
+    top: 20%;
+    background-color:#1c1c1c;
   }
-  
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-  
-  #container a {
-    text-decoration: none;
-  }
+
+}

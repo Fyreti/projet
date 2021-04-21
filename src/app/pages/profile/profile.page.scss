@@ -84,3 +84,35 @@ ion-menu-button {
       }
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  ion-content{
+    --background:#1c1c1c;
+  }
+
+
+  .card-body {
+    background-color: #262626;
+    padding: 30px;
+    height: calc(100vh – (200px + 56px));
+    overflow: hidden;
+  
+    .user-meta {
+        padding-top: 40px;
+  
+        .email {
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+        }
+  
+        .info {
+            font-size: 25px;
+            color: white;
+            margin: 0 auto;
+        }
+    }
+  }
+
+}
