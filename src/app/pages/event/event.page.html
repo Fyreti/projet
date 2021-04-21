@@ -43,9 +43,11 @@
         <ion-card-content>
           Date de fin : {{event.dateFin}}
         </ion-card-content>
+        <!--
         <ion-card-content>
           Date actuelle : {{currentDate.getDate()}}
         </ion-card-content>
+        -->
         <ion-button id="delete_button" color="danger" *ngIf="(userApp.role | uppercase)==='MAIRIE'" (click)="deleteEvent(event.dateDebut, event.name)">Supprimer</ion-button>
       </ion-col>
 

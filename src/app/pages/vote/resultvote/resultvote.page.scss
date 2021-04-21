@@ -61,3 +61,15 @@ ion-menu-button {
   text-align: center;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  ion-content{
+    --background:#1c1c1c;
+  }
+
+  #container {
+    display: flex;
+    justify-content: center;
+    background-color:#1c1c1c;
+  }
+}
