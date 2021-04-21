@@ -39,7 +39,7 @@ export class MessageService {
                 notif_mairie: doc.get('notif_mairie') + 1,
                 notif_user: doc.get('notif_user')
               });
-              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
                   message_user: message
               });
             }
@@ -56,7 +56,7 @@ export class MessageService {
                 notif_mairie: 1,
                 notif_user: 0
               });
-              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(userApp.email).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
                   message_user: message
               });
             }
@@ -113,7 +113,7 @@ export class MessageService {
                 notif_mairie: doc.get('notif_mairie'),
                 notif_user: doc.get('notif_user') + 1
               });
-              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+              firebase.default.firestore().collection('ville').doc(userApp.ville).collection('contact-mairie').doc(email).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
                 message_mairie: message
               });
             }
@@ -310,14 +310,14 @@ export class MessageService {
             faq : faq
           });
           if (userApp.role.toUpperCase() === "MAIRIE"){
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
               message_mairie: message,
               email: userApp.email,
               username: userApp.username
             });
           }
           else if (userApp.role.toUpperCase() === "VALID"){
-            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()).set({
+            firebase.default.firestore().collection('ville').doc(userApp.ville).collection('faq').doc(faq).collection('message').doc(Date.parse(this.date.toString()).toString()+userApp.email).set({
               message_user: message,
               email: userApp.email,
               username: userApp.username
