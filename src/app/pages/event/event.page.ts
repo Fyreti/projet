@@ -27,6 +27,13 @@ export class EventPage implements OnInit {
     this.dataService.getOneUser(user.email, this.userApp).then(() => {
       this.eventService.getEvent(this.userApp).then((allEvent) => {
         this.allEvent = allEvent;
+
+        firebase.default.firestore().collection('ville').doc(this.userApp.ville).collection('event')
+        .onSnapshot((querySnapshot) => {
+          this.eventService.getEvent(this.userApp).then( allEvent => {
+            this.allEvent = allEvent;
+          });
+        });
       }); 
     }, (raison) => {
       console.log(raison); // Erreur !

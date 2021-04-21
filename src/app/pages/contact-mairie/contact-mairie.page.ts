@@ -41,9 +41,7 @@ export class ContactMairiePage implements OnInit {
         this.scrollToBottom();
         this.messageService.receiveMessage(this.userApp).then((allMessage) => {
           this.allMessage = allMessage;
-        }); 
-        this.messageService.resetNotifUser(this.userApp);
-        firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email).collection('message')
+          firebase.default.firestore().collection('ville').doc('Paris').collection('contact-mairie').doc(this.userApp.email).collection('message')
           .onSnapshot((querySnapshot) => {
             if (this.router.url === '/contact-mairie'){
               this.messageService.resetNotifUser(this.userApp);
@@ -53,7 +51,10 @@ export class ContactMairiePage implements OnInit {
               }); 
             }
             
-        });
+          });
+        }); 
+        this.messageService.resetNotifUser(this.userApp);
+        
       }
       else if (this.userApp.role.toUpperCase()==='MAIRIE'){
         console.log("Mairie fr");
